@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cyan">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abhay Rana | DevOps & Cloud Security Engineer</title>
-  <meta name="description" content="Visual DevOps & Cloud Engineer Portfolio - Abhay Rana. Interactive CI/CD simulations, Linux hardening lab, AWS IAM visualizer, and containerized architectures.">
+  <title>Abhay Rana | DevOps & Cloud Security Studio</title>
+  <meta name="description" content="Colorful, interactive DevOps & Cloud Engineering Portfolio - Abhay Rana. Live CI/CD simulators, Linux hardening terminal, AWS IAM topology, and containerized microservices.">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Orbitron & Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -18,202 +18,240 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Dynamic Particle Canvas Background -->
+  <!-- Ambient Animated Aurora Glow Canvas -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Toast Notification Container -->
+  <!-- Notification Toast Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-  <!-- Header & Navigation -->
-  <header class="top-nav">
-    <div class="container nav-content">
-      <div class="brand">
-        <span class="brand-code">&lt;</span>
-        <span class="brand-name">ABHAY.DEVOPS</span>
-        <span class="brand-code">/&gt;</span>
-        <span class="live-status-dot" title="System Online"></span>
+  <!-- TOP DECORATIVE NAV CONTROL BAR -->
+  <header class="top-nav-bar">
+    <div class="container nav-inner">
+      <div class="brand-hologram">
+        <span class="brand-icon"><i class="fa-solid fa-cloud-bolt"></i></span>
+        <span class="brand-text">ABHAY<span class="accent-text">.RANA</span></span>
+        <span class="status-indicator" title="Cloud Systems Online"></span>
       </div>
 
-      <nav class="nav-links">
-        <a href="#projects-deck" class="nav-item active"><i class="fa-solid fa-layer-group"></i> Visual Projects</a>
-        <a href="#skills-matrix" class="nav-item"><i class="fa-solid fa-bolt"></i> Tech Stack</a>
-        <a href="#quick-contact" class="nav-item btn-contact-nav"><i class="fa-solid fa-paper-plane"></i> Connect</a>
-      </nav>
+      <!-- Center: Theme Accent Color Switcher -->
+      <div class="theme-switcher-deck">
+        <span class="switcher-label"><i class="fa-solid fa-palette"></i> Neon Theme:</span>
+        <div class="color-palette-buttons">
+          <button class="palette-btn cyan-btn active" data-color="cyan" title="Cyber Cyan"></button>
+          <button class="palette-btn purple-btn" data-color="purple" title="Neon Violet"></button>
+          <button class="palette-btn emerald-btn" data-color="emerald" title="Matrix Green"></button>
+          <button class="palette-btn sunset-btn" data-color="sunset" title="Solar Sunset"></button>
+        </div>
+      </div>
+
+      <!-- Quick Nav Buttons -->
+      <div class="nav-actions">
+        <a href="#quick-connect" class="btn btn-neon-cta">
+          <i class="fa-solid fa-paper-plane"></i> Quick Connect
+        </a>
+      </div>
     </div>
   </header>
 
-  <main class="main-wrapper">
-    <!-- Hero / Control Center Header -->
-    <section class="hero-control-center container">
-      <div class="hero-banner">
-        <div class="status-badge">
-          <span class="status-dot"></span>
-          <span>ONLINE &bull; AWS &bull; CI/CD &bull; LINUX HARDENING</span>
+  <!-- MAIN DASHBOARD WRAPPER -->
+  <main class="dashboard-wrapper container">
+    <!-- HERO CONTROL CENTER (Compact & Ultra Colorful) -->
+    <section class="hero-dashboard">
+      <div class="hero-aurora-card">
+        <div class="hero-top-row">
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            <span>DEVOPS ENGINEER &bull; CLOUD &bull; DEVSECOPS</span>
+          </div>
+          <div class="telemetry-pill">
+            <i class="fa-brands fa-aws"></i> AWS EC2 / ECS / ECR / IAM
+          </div>
         </div>
 
-        <h1 class="hero-title">
-          Hi, I'm <span class="gradient-text">Abhay Rana</span>
-          <span class="role-tag">DevOps & Cloud Engineer</span>
-        </h1>
+        <div class="hero-main-row">
+          <div class="hero-intro">
+            <h1 class="hero-name">
+              ABHAY <span class="gradient-text">RANA</span>
+            </h1>
+            <p class="hero-subtitle">
+              Automating Cloud-Native Deployments, Building Resilient CI/CD Pipelines & Hardening Server Infrastructure.
+            </p>
+          </div>
 
-        <p class="hero-tagline">
-          Building automated, resilient, and hardened cloud infrastructure. Explore my interactive visual architectures below.
-        </p>
+          <!-- Live Visual HUD Gauges -->
+          <div class="hud-telemetry-cluster">
+            <div class="hud-stat-badge stat-emerald">
+              <span class="stat-num">98%</span>
+              <span class="stat-name"><i class="fa-solid fa-shield-halved"></i> CIS Hardened</span>
+            </div>
+            <div class="hud-stat-badge stat-cyan">
+              <span class="stat-num">100%</span>
+              <span class="stat-name"><i class="fa-solid fa-arrows-spin"></i> Automated CI/CD</span>
+            </div>
+            <div class="hud-stat-badge stat-purple">
+              <span class="stat-num">Docker</span>
+              <span class="stat-name"><i class="fa-brands fa-docker"></i> Microservices</span>
+            </div>
+          </div>
+        </div>
 
-        <!-- Quick Action Social & Contact Chips -->
-        <div class="hero-quick-chips">
-          <button class="chip-action copy-chip" data-copy="Abhiryana0263@gmail.com" title="Click to copy email">
-            <i class="fa-solid fa-envelope text-cyan"></i> Abhiryana0263@gmail.com <i class="fa-regular fa-copy copy-icon"></i>
+        <!-- Quick Interactive Contact Chips -->
+        <div class="hero-contact-chips">
+          <button class="action-chip copy-chip" data-copy="Abhiryana0263@gmail.com">
+            <i class="fa-solid fa-envelope text-cyan"></i> Abhiryana0263@gmail.com <i class="fa-regular fa-copy"></i>
           </button>
-          <button class="chip-action copy-chip" data-copy="+919015210665" title="Click to copy phone">
-            <i class="fa-solid fa-phone text-emerald"></i> +91 9015210665 <i class="fa-regular fa-copy copy-icon"></i>
+          <button class="action-chip copy-chip" data-copy="+919015210665">
+            <i class="fa-solid fa-phone text-emerald"></i> +91 9015210665 <i class="fa-regular fa-copy"></i>
           </button>
-          <a href="https://github.com/Abhay0263" target="_blank" rel="noopener noreferrer" class="chip-action link-chip">
-            <i class="fa-brands fa-github text-purple"></i> GitHub: @Abhay0263 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <a href="https://github.com/Abhay0263" target="_blank" rel="noopener noreferrer" class="action-chip">
+            <i class="fa-brands fa-github text-purple"></i> @Abhay0263 <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
-          <a href="https://www.linkedin.com/in/abhay-rana-82559b325" target="_blank" rel="noopener noreferrer" class="chip-action link-chip">
+          <a href="https://www.linkedin.com/in/abhay-rana-82559b325" target="_blank" rel="noopener noreferrer" class="action-chip">
             <i class="fa-brands fa-linkedin text-cyan"></i> LinkedIn <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- CORE VISUAL PROJECTS DECK (Tabbed / Interactive Control Panel) -->
-    <section id="projects-deck" class="projects-deck-section container">
-      <div class="deck-header">
-        <div class="deck-title-wrap">
-          <span class="sub-badge"><i class="fa-solid fa-diagram-project"></i> INTERACTIVE ARCHITECTURES</span>
-          <h2 class="deck-title">Visual Project <span class="gradient-text">Command Deck</span></h2>
+    <!-- INTERACTIVE VISUAL PROJECT STUDIO (Tabbed High-Tech Deck) -->
+    <section class="interactive-studio">
+      <div class="studio-header">
+        <div class="studio-title-box">
+          <span class="studio-tag"><i class="fa-solid fa-microchip"></i> LIVE INTERACTIVE LABS</span>
+          <h2 class="studio-heading">Interactive <span class="gradient-text">Project Studio</span></h2>
         </div>
 
-        <!-- Project Switcher Tabs -->
-        <div class="deck-tabs" role="tablist">
-          <button class="deck-tab-btn active" data-tab="tab-cicd">
-            <i class="fa-solid fa-arrows-spin"></i> 1. Serverless CI/CD
+        <!-- High-Tech Tab Selector -->
+        <div class="studio-tab-bar" role="tablist">
+          <button class="studio-tab active" data-tab="tab-cicd">
+            <i class="fa-solid fa-rocket"></i> Serverless CI/CD
           </button>
-          <button class="deck-tab-btn" data-tab="tab-linux">
-            <i class="fa-solid fa-terminal"></i> 2. Linux Hardening Lab
+          <button class="studio-tab" data-tab="tab-linux">
+            <i class="fa-solid fa-terminal"></i> Hardening Terminal
           </button>
-          <button class="deck-tab-btn" data-tab="tab-iam">
-            <i class="fa-solid fa-shield-halved"></i> 3. AWS IAM & Cloud
+          <button class="studio-tab" data-tab="tab-iam">
+            <i class="fa-solid fa-shield-virus"></i> AWS IAM Inspector
           </button>
-          <button class="deck-tab-btn" data-tab="tab-docker">
-            <i class="fa-brands fa-docker"></i> 4. Docker Microservices
+          <button class="studio-tab" data-tab="tab-docker">
+            <i class="fa-brands fa-docker"></i> Docker & Bot Game
           </button>
         </div>
       </div>
 
-      <!-- TAB 1: Serverless CI/CD Pipeline Simulator -->
-      <div class="tab-panel active" id="tab-cicd">
-        <div class="panel-card">
-          <div class="panel-top">
-            <div class="panel-meta">
-              <span class="project-tag">AWS ECS Fargate &bull; Jenkins &bull; Docker &bull; ECR</span>
-              <h3>Automated Serverless CI/CD Pipeline</h3>
+      <!-- TAB 1: Serverless CI/CD Visual Flow -->
+      <div class="studio-panel active" id="tab-cicd">
+        <div class="neon-glass-card">
+          <div class="card-toolbar">
+            <div class="toolbar-info">
+              <span class="glow-label"><i class="fa-solid fa-bolt"></i> AUTOMATION ENGINE</span>
+              <h3>End-to-End Serverless CI/CD Pipeline</h3>
             </div>
-            <div class="panel-controls">
-              <button class="btn btn-primary btn-sm" id="btn-trigger-pipeline">
-                <i class="fa-solid fa-play"></i> Run Live Pipeline
+            <div class="toolbar-actions">
+              <button class="btn btn-glow-primary" id="btn-trigger-pipeline">
+                <i class="fa-solid fa-play"></i> Trigger Pipeline Simulation
               </button>
-              <button class="btn btn-glass btn-sm" id="btn-reset-pipeline">
+              <button class="btn btn-glow-glass" id="btn-reset-pipeline">
                 <i class="fa-solid fa-rotate-left"></i> Reset
               </button>
             </div>
           </div>
 
-          <!-- Interactive Pipeline Flow Diagram -->
-          <div class="pipeline-visual-flow">
-            <div class="pipe-step" id="pipe-step-1">
-              <div class="step-icon"><i class="fa-brands fa-github"></i></div>
-              <div class="step-label">1. GitHub</div>
-              <div class="step-sub">Git Push</div>
+          <!-- Visual Node Diagram with Glowing Energy Lines -->
+          <div class="pipeline-circuit">
+            <div class="circuit-node" id="node-1">
+              <div class="node-glow-ring"><i class="fa-brands fa-github"></i></div>
+              <span class="node-name">1. GitHub</span>
+              <span class="node-meta">Git Push Event</span>
             </div>
-            <div class="pipe-arrow"><i class="fa-solid fa-angle-right"></i></div>
+            <div class="circuit-wire"><i class="fa-solid fa-chevron-right"></i></div>
 
-            <div class="pipe-step" id="pipe-step-2">
-              <div class="step-icon"><i class="fa-brands fa-jenkins"></i></div>
-              <div class="step-label">2. Jenkins</div>
-              <div class="step-sub">Build & Test</div>
+            <div class="circuit-node" id="node-2">
+              <div class="node-glow-ring"><i class="fa-brands fa-jenkins"></i></div>
+              <span class="node-name">2. Jenkins</span>
+              <span class="node-meta">Automated Tests</span>
             </div>
-            <div class="pipe-arrow"><i class="fa-solid fa-angle-right"></i></div>
+            <div class="circuit-wire"><i class="fa-solid fa-chevron-right"></i></div>
 
-            <div class="pipe-step" id="pipe-step-3">
-              <div class="step-icon"><i class="fa-brands fa-docker"></i></div>
-              <div class="step-label">3. Docker</div>
-              <div class="step-sub">CVE Scan</div>
+            <div class="circuit-node" id="node-3">
+              <div class="node-glow-ring"><i class="fa-brands fa-docker"></i></div>
+              <span class="node-name">3. Docker</span>
+              <span class="node-meta">Trivy CVE Scan</span>
             </div>
-            <div class="pipe-arrow"><i class="fa-solid fa-angle-right"></i></div>
+            <div class="circuit-wire"><i class="fa-solid fa-chevron-right"></i></div>
 
-            <div class="pipe-step" id="pipe-step-4">
-              <div class="step-icon"><i class="fa-solid fa-box-archive"></i></div>
-              <div class="step-label">4. AWS ECR</div>
-              <div class="step-sub">Image Push</div>
+            <div class="circuit-node" id="node-4">
+              <div class="node-glow-ring"><i class="fa-solid fa-box-archive"></i></div>
+              <span class="node-name">4. AWS ECR</span>
+              <span class="node-meta">Secure Tag Push</span>
             </div>
-            <div class="pipe-arrow"><i class="fa-solid fa-angle-right"></i></div>
+            <div class="circuit-wire"><i class="fa-solid fa-chevron-right"></i></div>
 
-            <div class="pipe-step" id="pipe-step-5">
-              <div class="step-icon"><i class="fa-brands fa-aws"></i></div>
-              <div class="step-label">5. ECS Fargate</div>
-              <div class="step-sub">Serverless Deploy</div>
+            <div class="circuit-node" id="node-5">
+              <div class="node-glow-ring"><i class="fa-brands fa-aws"></i></div>
+              <span class="node-name">5. ECS Fargate</span>
+              <span class="node-meta">Rolling Deploy</span>
             </div>
-            <div class="pipe-arrow"><i class="fa-solid fa-angle-right"></i></div>
+            <div class="circuit-wire"><i class="fa-solid fa-chevron-right"></i></div>
 
-            <div class="pipe-step" id="pipe-step-6">
-              <div class="step-icon"><i class="fa-solid fa-chart-line"></i></div>
-              <div class="step-label">6. CloudWatch</div>
-              <div class="step-sub">Telemetry</div>
+            <div class="circuit-node" id="node-6">
+              <div class="node-glow-ring"><i class="fa-solid fa-chart-line"></i></div>
+              <span class="node-name">6. CloudWatch</span>
+              <span class="node-meta">Real-Time Logs</span>
             </div>
           </div>
 
-          <!-- Real-Time Console Stream -->
-          <div class="live-console">
-            <div class="console-top-bar">
-              <span><i class="fa-solid fa-terminal text-cyan"></i> Live Pipeline Stream</span>
-              <span id="pipeline-timer" class="timer-tag">Ready</span>
+          <!-- Live Streaming Console Output -->
+          <div class="circuit-console">
+            <div class="console-head">
+              <span><i class="fa-solid fa-terminal text-cyan"></i> Deployment Telemetry Logs</span>
+              <span class="console-timer" id="pipeline-timer">Status: Ready</span>
             </div>
-            <div class="console-logs" id="pipeline-logs">
-              <div class="log-entry text-muted">[READY] Click "Run Live Pipeline" to simulate end-to-end cloud deployment.</div>
+            <div class="console-screen" id="pipeline-logs">
+              <div class="console-msg text-muted">[READY] Click "Trigger Pipeline Simulation" to observe real-time cloud deployment.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: Linux Server Hardening Lab -->
-      <div class="tab-panel" id="tab-linux">
-        <div class="panel-card">
-          <div class="panel-top">
-            <div class="panel-meta">
-              <span class="project-tag">Linux &bull; Bash Scripting &bull; CIS Benchmark &bull; UFW</span>
-              <h3>Linux Server Hardening Lab</h3>
+      <!-- TAB 2: Linux Hardening Live Terminal -->
+      <div class="studio-panel" id="tab-linux">
+        <div class="neon-glass-card">
+          <div class="card-toolbar">
+            <div class="toolbar-info">
+              <span class="glow-label"><i class="fa-solid fa-shield-halved"></i> SECURITY & AUDITING</span>
+              <h3>Hardened Linux CLI Simulator</h3>
             </div>
-            <div class="score-badge">
-              <i class="fa-solid fa-shield-check text-emerald"></i> CIS Hardening Score: <strong>98/100</strong>
+            <div class="score-indicator-badge">
+              <i class="fa-solid fa-circle-check text-emerald"></i> CIS Benchmark Score: <strong>98/100</strong>
             </div>
           </div>
 
-          <div class="terminal-container">
-            <div class="term-bar">
-              <div class="term-dots">
-                <span></span><span></span><span></span>
+          <div class="terminal-box">
+            <div class="terminal-top">
+              <div class="term-lights">
+                <span class="light red"></span>
+                <span class="light yellow"></span>
+                <span class="light green"></span>
               </div>
-              <div class="term-title">abhay@hardened-node: ~</div>
-              <span class="term-pill">BASH 5.2</span>
+              <span class="term-title"><i class="fa-solid fa-microchip"></i> abhay@hardened-node: ~</span>
+              <span class="term-env">BASH 5.2</span>
             </div>
-            <div class="term-body" id="term-screen">
-              <div class="term-row text-muted">Linux hardened-server 6.1.0-aws x86_64</div>
-              <div class="term-row text-cyan">Welcome to Abhay Rana's Security Node. Type 'audit' or 'help' below.</div>
+            <div class="terminal-screen" id="term-screen">
+              <div class="term-line text-muted">Linux hardened-server 6.1.0-aws x86_64</div>
+              <div class="term-line text-cyan">Welcome to Abhay Rana's Security Node. Type <strong class="text-yellow">'audit'</strong> or <strong class="text-yellow">'help'</strong> below.</div>
             </div>
-            <div class="term-input-row">
+            <div class="terminal-input-bar">
               <span class="term-prompt">abhay@node:~$</span>
-              <input type="text" id="term-input" placeholder="Try: audit, check-ssh, ufw, skills, clear..." autocomplete="off">
-              <button id="term-send-btn" class="btn-term-go"><i class="fa-solid fa-arrow-right"></i></button>
+              <input type="text" id="term-input" placeholder="Type a command (audit, check-ssh, ufw, cat audit.sh, skills, clear)..." autocomplete="off">
+              <button class="term-enter-btn" id="term-send-btn"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
-            <div class="term-quick-tags">
-              <span>Quick:</span>
+            <div class="terminal-quick-chips">
+              <span class="quick-label">Quick Run:</span>
               <button class="cmd-pill" data-cmd="audit">hardening-audit</button>
               <button class="cmd-pill" data-cmd="check-ssh">check-ssh</button>
               <button class="cmd-pill" data-cmd="ufw status">ufw status</button>
               <button class="cmd-pill" data-cmd="cat audit.sh">cat audit.sh</button>
+              <button class="cmd-pill" data-cmd="skills">skills</button>
               <button class="cmd-pill" data-cmd="clear">clear</button>
             </div>
           </div>
@@ -221,63 +259,63 @@
       </div>
 
       <!-- TAB 3: AWS IAM & Cloud Infrastructure Inspector -->
-      <div class="tab-panel" id="tab-iam">
-        <div class="panel-card">
-          <div class="panel-top">
-            <div class="panel-meta">
-              <span class="project-tag">AWS EC2 &bull; IAM Policies &bull; VPC Security Groups</span>
-              <h3>AWS Cloud Infrastructure & IAM Inspector</h3>
+      <div class="studio-panel" id="tab-iam">
+        <div class="neon-glass-card">
+          <div class="card-toolbar">
+            <div class="toolbar-info">
+              <span class="glow-label"><i class="fa-brands fa-aws"></i> CLOUD SECURITY MAPPING</span>
+              <h3>AWS VPC Infrastructure & IAM Policy Evaluator</h3>
             </div>
-            <div class="role-switchers">
-              <span class="role-label">Active Role:</span>
-              <button class="role-pill active" data-role="devops">DevOps Engineer</button>
-              <button class="role-pill" data-role="auditor">Security Auditor</button>
-              <button class="role-pill" data-role="guest">Unprivileged User</button>
+            <div class="iam-role-toggles">
+              <span class="role-caption">Active Role:</span>
+              <button class="role-selector active" data-role="devops">DevOps Engineer</button>
+              <button class="role-selector" data-role="auditor">Security Auditor</button>
+              <button class="role-selector" data-role="guest">Unprivileged User</button>
             </div>
           </div>
 
-          <div class="iam-grid-layout">
-            <!-- Visual Resource Matrix -->
-            <div class="iam-visual-box">
-              <div class="iam-box-header"><i class="fa-brands fa-aws text-orange"></i> AWS VPC Resources (us-east-1)</div>
-              <div class="resource-items">
-                <div class="res-item">
-                  <i class="fa-solid fa-server"></i>
-                  <div class="res-details">
-                    <strong>EC2 Hardened Instance</strong>
-                    <span>Amazon Linux 2023</span>
+          <div class="iam-visual-split">
+            <!-- Left: Resource Permission Nodes -->
+            <div class="iam-res-panel">
+              <div class="panel-header-sub"><i class="fa-solid fa-network-wired text-cyan"></i> Provisioned VPC Resources (us-east-1)</div>
+              <div class="res-node-list">
+                <div class="res-node-card">
+                  <i class="fa-solid fa-server res-icon"></i>
+                  <div class="res-info">
+                    <strong>EC2 Instance (Amazon Linux 2023)</strong>
+                    <span>Private Subnet (10.0.2.0/24)</span>
                   </div>
-                  <span class="res-badge allowed" id="iam-res-ec2"><i class="fa-solid fa-check"></i> ALLOWED</span>
+                  <span class="status-pill-badge allowed" id="iam-badge-ec2"><i class="fa-solid fa-check"></i> ALLOWED</span>
                 </div>
-                <div class="res-item">
-                  <i class="fa-solid fa-database"></i>
-                  <div class="res-details">
-                    <strong>S3 State Storage</strong>
-                    <span>Encrypted Bucket</span>
+                <div class="res-node-card">
+                  <i class="fa-solid fa-database res-icon text-emerald"></i>
+                  <div class="res-info">
+                    <strong>S3 Artifacts & State Storage</strong>
+                    <span>Encrypted AES-256 Bucket</span>
                   </div>
-                  <span class="res-badge allowed" id="iam-res-s3"><i class="fa-solid fa-check"></i> ALLOWED</span>
+                  <span class="status-pill-badge allowed" id="iam-badge-s3"><i class="fa-solid fa-check"></i> ALLOWED</span>
                 </div>
-                <div class="res-item">
-                  <i class="fa-solid fa-boxes-stacked"></i>
-                  <div class="res-details">
+                <div class="res-node-card">
+                  <i class="fa-solid fa-boxes-stacked res-icon text-purple"></i>
+                  <div class="res-info">
                     <strong>ECS Fargate Cluster & ECR</strong>
-                    <span>Container Registry</span>
+                    <span>Container Task Definitions</span>
                   </div>
-                  <span class="res-badge allowed" id="iam-res-ecs"><i class="fa-solid fa-check"></i> ALLOWED</span>
+                  <span class="status-pill-badge allowed" id="iam-badge-ecs"><i class="fa-solid fa-check"></i> ALLOWED</span>
                 </div>
               </div>
             </div>
 
-            <!-- Dynamic JSON Policy -->
-            <div class="iam-json-box">
-              <div class="json-header">
-                <span><i class="fa-solid fa-code"></i> Live IAM Policy Document</span>
-                <button class="copy-json-btn" id="btn-copy-iam"><i class="fa-regular fa-copy"></i> Copy</button>
+            <!-- Right: Dynamic IAM Policy JSON -->
+            <div class="iam-policy-panel">
+              <div class="panel-header-sub">
+                <span><i class="fa-solid fa-code text-yellow"></i> Live IAM Policy Document</span>
+                <button class="btn-copy-code" id="btn-copy-iam"><i class="fa-regular fa-copy"></i> Copy JSON</button>
               </div>
-              <pre class="json-code" id="iam-json-display"><code>{
+              <pre class="json-code-box" id="iam-json-display"><code>{
   "Version": "2012-10-17",
   "Statement": [{
-    "Sid": "DevOpsLeastPrivilege",
+    "Sid": "DevOpsLeastPrivilegeAccess",
     "Effect": "Allow",
     "Action": ["ec2:*", "ecs:*", "ecr:*", "s3:*"],
     "Resource": "*"
@@ -288,47 +326,58 @@
         </div>
       </div>
 
-      <!-- TAB 4: Containerized Microservices & Bot Game -->
-      <div class="tab-panel" id="tab-docker">
-        <div class="panel-card">
-          <div class="panel-top">
-            <div class="panel-meta">
-              <span class="project-tag">Docker Compose &bull; Nginx &bull; Python Flask &bull; MySQL</span>
-              <h3>Containerized Microservices & Playable Bot</h3>
+      <!-- TAB 4: Docker Microservices & Playable Bot Game -->
+      <div class="studio-panel" id="tab-docker">
+        <div class="neon-glass-card">
+          <div class="card-toolbar">
+            <div class="toolbar-info">
+              <span class="glow-label"><i class="fa-brands fa-docker"></i> MICROSERVICES ORCHESTRATION</span>
+              <h3>Containerized Web App & Playable Bot</h3>
             </div>
-            <div class="game-score-display">
-              <span>YOU (X): <strong id="score-player" class="text-cyan">0</strong></span>
-              <span>TIES: <strong id="score-ties" class="text-yellow">0</strong></span>
-              <span>BOT (O): <strong id="score-bot" class="text-purple">0</strong></span>
+            <div class="game-scoreboard-deck">
+              <span class="score-chip player-chip">YOU (X): <strong id="score-player">0</strong></span>
+              <span class="score-chip ties-chip">TIES: <strong id="score-ties">0</strong></span>
+              <span class="score-chip bot-chip">BOT (O): <strong id="score-bot">0</strong></span>
             </div>
           </div>
 
-          <div class="docker-showcase-grid">
-            <!-- Microservices Blueprint -->
-            <div class="microservices-card">
-              <div class="tier-row">
-                <i class="fa-solid fa-globe text-cyan"></i>
-                <div><strong>Nginx Reverse Proxy</strong> (Port 80)</div>
-                <span class="container-pill">Container 1</span>
+          <div class="docker-interactive-split">
+            <!-- Left: Microservices Architecture Blueprint -->
+            <div class="microservices-blueprint">
+              <div class="tier-card">
+                <i class="fa-solid fa-globe tier-ico text-cyan"></i>
+                <div class="tier-text">
+                  <strong>Nginx Reverse Proxy</strong>
+                  <span>Port 80 -> Static Assets & SSL Termination</span>
+                </div>
+                <span class="docker-tag">Container 1</span>
               </div>
-              <div class="tier-arrow"><i class="fa-solid fa-arrow-down"></i> /api/move REST calls</div>
-              <div class="tier-row">
-                <i class="fa-brands fa-python text-yellow"></i>
-                <div><strong>Python Flask Backend</strong> (Port 5000)</div>
-                <span class="container-pill">Container 2</span>
+              <div class="tier-flow-wire"><i class="fa-solid fa-arrow-down"></i> REST API Route (/api/move)</div>
+
+              <div class="tier-card">
+                <i class="fa-brands fa-python tier-ico text-yellow"></i>
+                <div class="tier-text">
+                  <strong>Python Flask Backend</strong>
+                  <span>Port 5000 -> Bot AI Logic & Match Engine</span>
+                </div>
+                <span class="docker-tag">Container 2</span>
               </div>
-              <div class="tier-arrow"><i class="fa-solid fa-arrow-down"></i> State Persistence</div>
-              <div class="tier-row">
-                <i class="fa-solid fa-database text-emerald"></i>
-                <div><strong>MySQL Database</strong> (Port 3306)</div>
-                <span class="container-pill">Container 3</span>
+              <div class="tier-flow-wire"><i class="fa-solid fa-arrow-down"></i> MySQL State Sync</div>
+
+              <div class="tier-card">
+                <i class="fa-solid fa-database tier-ico text-emerald"></i>
+                <div class="tier-text">
+                  <strong>MySQL Database</strong>
+                  <span>Port 3306 -> Persistent Match Records</span>
+                </div>
+                <span class="docker-tag">Container 3</span>
               </div>
             </div>
 
-            <!-- Playable Interactive Mini Game -->
-            <div class="mini-game-card">
-              <div class="game-status-line" id="game-status">Your turn! Click any tile.</div>
-              <div class="ttt-grid" id="ttt-grid">
+            <!-- Right: Playable Bot Arena -->
+            <div class="game-arena-panel">
+              <div class="game-prompt" id="game-status">Your turn! Click any tile.</div>
+              <div class="ttt-board" id="ttt-board">
                 <button class="ttt-cell" data-idx="0"></button>
                 <button class="ttt-cell" data-idx="1"></button>
                 <button class="ttt-cell" data-idx="2"></button>
@@ -339,7 +388,7 @@
                 <button class="ttt-cell" data-idx="7"></button>
                 <button class="ttt-cell" data-idx="8"></button>
               </div>
-              <button class="btn btn-glass btn-sm btn-block" id="btn-restart-game">
+              <button class="btn btn-glow-glass btn-block" id="btn-restart-game">
                 <i class="fa-solid fa-rotate-left"></i> Restart Match
               </button>
             </div>
@@ -348,142 +397,142 @@
       </div>
     </section>
 
-    <!-- VISUAL SKILLS MATRIX -->
-    <section id="skills-matrix" class="skills-section container">
-      <div class="deck-header">
-        <div class="deck-title-wrap">
-          <span class="sub-badge"><i class="fa-solid fa-microchip"></i> COMPETENCIES</span>
-          <h2 class="deck-title">Technical <span class="gradient-text">Skills & Arsenal</span></h2>
+    <!-- COLORFUL TECHNICAL ARSENAL (Visual Skill Badges with Glowing Borders) -->
+    <section class="arsenal-section">
+      <div class="studio-header">
+        <div class="studio-title-box">
+          <span class="studio-tag"><i class="fa-solid fa-layer-group"></i> MASTERY & TOOLS</span>
+          <h2 class="studio-heading">Technical <span class="gradient-text">Skills Arsenal</span></h2>
         </div>
 
         <!-- Filter Chips -->
-        <div class="skill-filters">
-          <button class="filter-pill active" data-filter="all">All</button>
-          <button class="filter-pill" data-filter="cloud">Cloud & DevOps</button>
-          <button class="filter-pill" data-filter="security">Security</button>
-          <button class="filter-pill" data-filter="systems">Linux & Networking</button>
-          <button class="filter-pill" data-filter="code">Programming</button>
+        <div class="arsenal-filters">
+          <button class="filter-chip active" data-filter="all">All Disciplines</button>
+          <button class="filter-chip" data-filter="cloud">Cloud & DevOps</button>
+          <button class="filter-chip" data-filter="security">Security & Hardening</button>
+          <button class="filter-chip" data-filter="systems">Linux & Networking</button>
+          <button class="filter-chip" data-filter="code">Code & Data</button>
         </div>
       </div>
 
-      <div class="skills-cards-grid" id="skills-cards-grid">
-        <!-- Cloud & DevOps -->
-        <div class="tech-card" data-cat="cloud">
-          <div class="tech-icon"><i class="fa-brands fa-aws text-orange"></i></div>
-          <div class="tech-info">
-            <h4>AWS Cloud</h4>
-            <p>ECS, ECR, Fargate, EC2, IAM, S3, CloudWatch, CLI</p>
-          </div>
+      <div class="arsenal-cards-grid" id="arsenal-grid">
+        <!-- Cloud & DevOps Cards -->
+        <div class="skill-neon-card" data-cat="cloud">
+          <div class="skill-card-glow glow-orange"></div>
+          <i class="fa-brands fa-aws skill-icon text-orange"></i>
+          <h4>AWS Cloud</h4>
+          <p>ECS, ECR, Fargate, EC2, IAM, S3, CloudWatch, CLI</p>
+          <div class="skill-meter"><div class="meter-bar orange-bar" style="width: 90%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="cloud">
-          <div class="tech-icon"><i class="fa-brands fa-docker text-cyan"></i></div>
-          <div class="tech-info">
-            <h4>Docker & Compose</h4>
-            <p>Multi-stage builds, containerization, orchestration</p>
-          </div>
+        <div class="skill-neon-card" data-cat="cloud">
+          <div class="skill-card-glow glow-cyan"></div>
+          <i class="fa-brands fa-docker skill-icon text-cyan"></i>
+          <h4>Docker & Compose</h4>
+          <p>Multi-stage Dockerfiles, microservices, containerization</p>
+          <div class="skill-meter"><div class="meter-bar cyan-bar" style="width: 88%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="cloud">
-          <div class="tech-icon"><i class="fa-brands fa-jenkins text-yellow"></i></div>
-          <div class="tech-info">
-            <h4>Jenkins & CI/CD</h4>
-            <p>Automated build/test/deploy, webhook triggers</p>
-          </div>
+        <div class="skill-neon-card" data-cat="cloud">
+          <div class="skill-card-glow glow-yellow"></div>
+          <i class="fa-brands fa-jenkins skill-icon text-yellow"></i>
+          <h4>Jenkins CI/CD</h4>
+          <p>Automated build/test/deploy pipelines, webhook triggers</p>
+          <div class="skill-meter"><div class="meter-bar yellow-bar" style="width: 85%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="cloud">
-          <div class="tech-icon"><i class="fa-brands fa-git-alt text-red"></i></div>
-          <div class="tech-info">
-            <h4>Git & GitHub</h4>
-            <p>Version control, branch workflows, automation</p>
-          </div>
+        <div class="skill-neon-card" data-cat="cloud">
+          <div class="skill-card-glow glow-red"></div>
+          <i class="fa-brands fa-git-alt skill-icon text-red"></i>
+          <h4>Git & GitHub</h4>
+          <p>Version control, branch protection, pull requests</p>
+          <div class="skill-meter"><div class="meter-bar red-bar" style="width: 92%;"></div></div>
         </div>
 
         <!-- Security -->
-        <div class="tech-card" data-cat="security">
-          <div class="tech-icon"><i class="fa-solid fa-user-shield text-purple"></i></div>
-          <div class="tech-info">
-            <h4>IAM & Access Control</h4>
-            <p>Least-privilege policies, temporary STS credentials</p>
-          </div>
+        <div class="skill-neon-card" data-cat="security">
+          <div class="skill-card-glow glow-purple"></div>
+          <i class="fa-solid fa-user-shield skill-icon text-purple"></i>
+          <h4>IAM & DevSecOps</h4>
+          <p>Least-privilege policies, temporary STS credentials</p>
+          <div class="skill-meter"><div class="meter-bar purple-bar" style="width: 90%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="security">
-          <div class="tech-icon"><i class="fa-solid fa-shield-virus text-emerald"></i></div>
-          <div class="tech-info">
-            <h4>Linux Server Hardening</h4>
-            <p>CIS benchmark audits, UFW firewall, SSH hardening</p>
-          </div>
+        <div class="skill-neon-card" data-cat="security">
+          <div class="skill-card-glow glow-emerald"></div>
+          <i class="fa-solid fa-shield-virus skill-icon text-emerald"></i>
+          <h4>Linux Hardening</h4>
+          <p>CIS benchmark audits, UFW firewall, SSH key auth</p>
+          <div class="skill-meter"><div class="meter-bar emerald-bar" style="width: 95%;"></div></div>
         </div>
 
-        <!-- Systems -->
-        <div class="tech-card" data-cat="systems">
-          <div class="tech-icon"><i class="fa-brands fa-linux text-yellow"></i></div>
-          <div class="tech-info">
-            <h4>Linux Administration</h4>
-            <p>Ubuntu, Amazon Linux, Bash scripting, systemd</p>
-          </div>
+        <!-- Systems & Networking -->
+        <div class="skill-neon-card" data-cat="systems">
+          <div class="skill-card-glow glow-yellow"></div>
+          <i class="fa-brands fa-linux skill-icon text-yellow"></i>
+          <h4>Linux Administration</h4>
+          <p>Ubuntu, Amazon Linux, Bash scripting, systemd</p>
+          <div class="skill-meter"><div class="meter-bar yellow-bar" style="width: 90%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="systems">
-          <div class="tech-icon"><i class="fa-solid fa-network-wired text-cyan"></i></div>
-          <div class="tech-info">
-            <h4>Networking & Nginx</h4>
-            <p>TCP/IP, reverse proxies, SSL/TLS, DNS, SSH</p>
-          </div>
+        <div class="skill-neon-card" data-cat="systems">
+          <div class="skill-card-glow glow-cyan"></div>
+          <i class="fa-solid fa-network-wired skill-icon text-cyan"></i>
+          <h4>Networking & Nginx</h4>
+          <p>TCP/IP, reverse proxies, SSL/TLS, DNS, SSH</p>
+          <div class="skill-meter"><div class="meter-bar cyan-bar" style="width: 85%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="systems">
-          <div class="tech-icon"><i class="fa-solid fa-database text-emerald"></i></div>
-          <div class="tech-info">
-            <h4>MySQL & Databases</h4>
-            <p>Relational queries, container volume persistence</p>
-          </div>
+        <!-- Code & Data -->
+        <div class="skill-neon-card" data-cat="code">
+          <div class="skill-card-glow glow-yellow"></div>
+          <i class="fa-brands fa-python skill-icon text-yellow"></i>
+          <h4>Python & Flask</h4>
+          <p>REST APIs, DevOps automation scripts, tooling</p>
+          <div class="skill-meter"><div class="meter-bar yellow-bar" style="width: 86%;"></div></div>
         </div>
 
-        <!-- Code -->
-        <div class="tech-card" data-cat="code">
-          <div class="tech-icon"><i class="fa-brands fa-python text-yellow"></i></div>
-          <div class="tech-info">
-            <h4>Python & Flask</h4>
-            <p>REST APIs, DevOps automation scripts, tooling</p>
-          </div>
+        <div class="skill-neon-card" data-cat="code">
+          <div class="skill-card-glow glow-emerald"></div>
+          <i class="fa-solid fa-database skill-icon text-emerald"></i>
+          <h4>MySQL & DB</h4>
+          <p>Relational queries, container volume persistence</p>
+          <div class="skill-meter"><div class="meter-bar emerald-bar" style="width: 82%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="code">
-          <div class="tech-icon"><i class="fa-solid fa-code text-purple"></i></div>
-          <div class="tech-info">
-            <h4>C++ & Java</h4>
-            <p>Data structures, algorithms, object-oriented logic</p>
-          </div>
+        <div class="skill-neon-card" data-cat="code">
+          <div class="skill-card-glow glow-purple"></div>
+          <i class="fa-solid fa-code skill-icon text-purple"></i>
+          <h4>C++ & Java</h4>
+          <p>Data structures, algorithms, object-oriented concepts</p>
+          <div class="skill-meter"><div class="meter-bar purple-bar" style="width: 80%;"></div></div>
         </div>
 
-        <div class="tech-card" data-cat="code">
-          <div class="tech-icon"><i class="fa-brands fa-html5 text-orange"></i></div>
-          <div class="tech-info">
-            <h4>HTML, CSS & JS</h4>
-            <p>Clean modern interfaces, async APIs, responsive design</p>
-          </div>
+        <div class="skill-neon-card" data-cat="code">
+          <div class="skill-card-glow glow-orange"></div>
+          <i class="fa-brands fa-html5 skill-icon text-orange"></i>
+          <h4>HTML, CSS & JS</h4>
+          <p>Responsive design, async APIs, modern interactive DOM</p>
+          <div class="skill-meter"><div class="meter-bar orange-bar" style="width: 88%;"></div></div>
         </div>
       </div>
     </section>
 
-    <!-- COMPACT CONNECT SECTION -->
-    <section id="quick-contact" class="connect-bar-section container">
-      <div class="connect-card">
-        <div class="connect-left">
-          <h3>Let's Connect & Collaborate</h3>
-          <p>Open for DevOps & Cloud Engineering opportunities.</p>
+    <!-- QUICK CONNECT FOOTER DECK -->
+    <section id="quick-connect" class="connect-deck">
+      <div class="connect-neon-box">
+        <div class="connect-text">
+          <h3><i class="fa-solid fa-satellite-dish text-cyan"></i> Ready to collaborate or discuss DevOps roles?</h3>
+          <p>Open for DevOps internships, Cloud roles, and open-source cloud projects.</p>
         </div>
-        <div class="connect-right">
-          <button class="btn btn-primary copy-chip" data-copy="Abhiryana0263@gmail.com">
+        <div class="connect-btns">
+          <button class="btn btn-glow-primary copy-chip" data-copy="Abhiryana0263@gmail.com">
             <i class="fa-solid fa-envelope"></i> Copy Email
           </button>
-          <a href="https://github.com/Abhay0263" target="_blank" rel="noopener noreferrer" class="btn btn-glass">
+          <a href="https://github.com/Abhay0263" target="_blank" rel="noopener noreferrer" class="btn btn-glow-glass">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
-          <a href="https://www.linkedin.com/in/abhay-rana-82559b325" target="_blank" rel="noopener noreferrer" class="btn btn-glass">
+          <a href="https://www.linkedin.com/in/abhay-rana-82559b325" target="_blank" rel="noopener noreferrer" class="btn btn-glow-glass">
             <i class="fa-brands fa-linkedin"></i> LinkedIn
           </a>
         </div>
@@ -491,10 +540,10 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-row">
-      <span><strong>ABHAY RANA</strong> &bull; DevOps & Cloud Portfolio</span>
-      <span>Live on AWS EC2 &bull; Docker Containerized</span>
+  <footer class="studio-footer">
+    <div class="container footer-content">
+      <span><strong>ABHAY RANA</strong> &bull; DevOps & Cloud Portfolio Studio</span>
+      <span>Live on AWS EC2 &bull; Docker Containerized &bull; Nginx Powered</span>
     </div>
   </footer>
 

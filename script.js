@@ -1,19 +1,37 @@
 /**
- * ABHAY RANA - VISUAL DEVOPS COMMAND DECK INTERACTION ENGINE
+ * ABHAY RANA - COLORFUL & DECORATIVE DEVOPS STUDIO INTERACTION ENGINE
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeSwitcher();
   initCanvas();
-  initDeckTabs();
+  initStudioTabs();
   initPipeline();
   initTerminal();
   initIAM();
-  initMiniGame();
-  initSkillsFilter();
+  initBotGame();
+  initArsenalFilter();
   initClipboardAndToasts();
 });
 
-/* 1. Subtle Background Grid Particle Mesh */
+/* 1. Dynamic Theme Accent Switcher */
+function initThemeSwitcher() {
+  const buttons = document.querySelectorAll('.palette-btn');
+  const html = document.documentElement;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const theme = btn.getAttribute('data-color');
+      html.setAttribute('data-theme', theme);
+      showToast(`Neon Palette switched to: ${theme.toUpperCase()}`);
+    });
+  });
+}
+
+/* 2. Colorful Ambient Particle Canvas */
 function initCanvas() {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
@@ -21,13 +39,14 @@ function initCanvas() {
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
-  const particles = Array.from({ length: 35 }, () => ({
+  const colors = ['#00f0ff', '#d946ef', '#10b981', '#f59e0b', '#38bdf8'];
+  const particles = Array.from({ length: 40 }, () => ({
     x: Math.random() * width,
     y: Math.random() * height,
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: (Math.random() - 0.5) * 0.3,
-    radius: Math.random() * 1.5 + 0.5,
-    color: Math.random() > 0.5 ? '#00f0ff' : '#8b5cf6'
+    vx: (Math.random() - 0.5) * 0.35,
+    vy: (Math.random() - 0.5) * 0.35,
+    radius: Math.random() * 2 + 0.6,
+    color: colors[Math.floor(Math.random() * colors.length)]
   }));
 
   function render() {
@@ -38,12 +57,12 @@ function initCanvas() {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.hypot(dx, dy);
-        if (dist < 110) {
+        if (dist < 115) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = '#00f0ff';
-          ctx.globalAlpha = (1 - dist / 110) * 0.1;
+          ctx.strokeStyle = particles[i].color;
+          ctx.globalAlpha = (1 - dist / 115) * 0.12;
           ctx.stroke();
         }
       }
@@ -57,7 +76,7 @@ function initCanvas() {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       ctx.fillStyle = p.color;
-      ctx.globalAlpha = 0.25;
+      ctx.globalAlpha = 0.35;
       ctx.fill();
     });
 
@@ -71,10 +90,10 @@ function initCanvas() {
   });
 }
 
-/* 2. Visual Project Deck Tabs */
-function initDeckTabs() {
-  const tabs = document.querySelectorAll('.deck-tab-btn');
-  const panels = document.querySelectorAll('.tab-panel');
+/* 3. Interactive Project Studio Tabs */
+function initStudioTabs() {
+  const tabs = document.querySelectorAll('.studio-tab');
+  const panels = document.querySelectorAll('.studio-panel');
 
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
@@ -89,32 +108,32 @@ function initDeckTabs() {
   });
 }
 
-/* 3. Serverless CI/CD Pipeline Simulator */
+/* 4. CI/CD Pipeline Simulator */
 function initPipeline() {
   const btnTrigger = document.getElementById('btn-trigger-pipeline');
   const btnReset = document.getElementById('btn-reset-pipeline');
   const timer = document.getElementById('pipeline-timer');
   const logs = document.getElementById('pipeline-logs');
-  const steps = [1, 2, 3, 4, 5, 6].map((n) => document.getElementById(`pipe-step-${n}`));
+  const nodes = [1, 2, 3, 4, 5, 6].map((n) => document.getElementById(`node-${n}`));
 
   let running = false;
   let timerId = null;
 
-  const sequence = [
-    { text: '[1/6] [GITHUB] Webhook event received from branch: main (commit 9d4f21a)', dur: 800 },
-    { text: '[2/6] [JENKINS] Running automated tests: 42/42 tests passed in 0.8s.', dur: 900 },
-    { text: '[3/6] [DOCKER] Multi-stage build completed. Trivy scan: 0 critical CVEs.', dur: 1000 },
-    { text: '[4/6] [AWS ECR] Image pushed to 123456789.dkr.ecr.us-east-1.amazonaws.com/app:latest', dur: 800 },
-    { text: '[5/6] [ECS FARGATE] Zero-downtime rolling update deployed to cluster.', dur: 1100 },
-    { text: '[6/6] [CLOUDWATCH] Healthcheck: 200 OK. CPU < 12%. Pipeline PASSED (100% LIVE)!', dur: 700 }
+  const steps = [
+    { text: '[1/6] [GITHUB] Webhook event dispatched on branch: origin/main (SHA: 9f2a4c1)', dur: 700 },
+    { text: '[2/6] [JENKINS] Running automated tests: 42/42 tests passed in 0.8s. Linting clean.', dur: 800 },
+    { text: '[3/6] [DOCKER] Multi-stage container build completed. Trivy scan: 0 CVEs found.', dur: 900 },
+    { text: '[4/6] [AWS ECR] Docker image tag 123456789.dkr.ecr.us-east-1.amazonaws.com/app:v1.4 pushed.', dur: 700 },
+    { text: '[5/6] [ECS FARGATE] Blue/Green rolling deployment updated task definition.', dur: 1000 },
+    { text: '[6/6] [CLOUDWATCH] Service healthy: 200 OK. CPU < 10%. Pipeline 100% SUCCESS!', dur: 600 }
   ];
 
   function reset() {
     clearInterval(timerId);
     running = false;
-    steps.forEach((s) => s && s.classList.remove('active', 'done'));
-    timer.textContent = 'Ready';
-    logs.innerHTML = '<div class="log-entry text-muted">[READY] Click "Run Live Pipeline" to simulate end-to-end cloud deployment.</div>';
+    nodes.forEach((n) => n && n.classList.remove('running', 'passed'));
+    timer.textContent = 'Status: Ready';
+    logs.innerHTML = '<div class="console-msg text-muted">[READY] Click "Trigger Pipeline Simulation" to observe real-time cloud deployment.</div>';
   }
 
   async function run() {
@@ -127,26 +146,26 @@ function initPipeline() {
       timer.textContent = `Running: ${((performance.now() - start) / 1000).toFixed(1)}s`;
     }, 100);
 
-    for (let i = 0; i < sequence.length; i++) {
-      const stepEl = steps[i];
-      if (stepEl) stepEl.classList.add('active');
+    for (let i = 0; i < steps.length; i++) {
+      const node = nodes[i];
+      if (node) node.classList.add('running');
 
-      const log = document.createElement('div');
-      log.className = 'log-entry text-cyan';
-      log.textContent = sequence[i].text;
-      logs.appendChild(log);
+      const entry = document.createElement('div');
+      entry.className = 'console-msg text-cyan';
+      entry.textContent = steps[i].text;
+      logs.appendChild(entry);
       logs.scrollTop = logs.scrollHeight;
 
-      await new Promise((r) => setTimeout(r, sequence[i].dur));
+      await new Promise((r) => setTimeout(r, steps[i].dur));
 
-      if (stepEl) {
-        stepEl.classList.remove('active');
-        stepEl.classList.add('done');
+      if (node) {
+        node.classList.remove('running');
+        node.classList.add('passed');
       }
     }
 
     clearInterval(timerId);
-    timer.textContent = 'Status: SUCCESS (6/6)';
+    timer.textContent = 'Status: PASSED (6/6)';
     running = false;
     showToast('CI/CD Pipeline simulation completed!');
   }
@@ -155,7 +174,7 @@ function initPipeline() {
   if (btnReset) btnReset.addEventListener('click', reset);
 }
 
-/* 4. Linux Hardening Interactive Terminal */
+/* 5. Linux Hardening Terminal */
 function initTerminal() {
   const screen = document.getElementById('term-screen');
   const input = document.getElementById('term-input');
@@ -165,29 +184,34 @@ function initTerminal() {
   if (!screen || !input) return;
 
   const db = {
-    help: `Commands:
+    help: `Available commands:
   - audit / hardening-audit : Run CIS benchmark audit
   - check-ssh               : Check SSH hardening config
   - ufw / ufw status        : Check firewall rules
   - cat audit.sh            : View automation shell script
-  - skills                  : List core technical competencies
+  - skills                  : List technical competencies
   - clear                   : Clear terminal`,
 
-    audit: `[CIS BENCHMARK AUDIT] Score: 98/100 (HARDENED)
+    audit: `[CIS BENCHMARK AUDIT] Security Score: 98/100 (HARDENED)
 [✓] Root SSH Disabled (PermitRootLogin no)
 [✓] Strict permissions on /etc/shadow (0600)
-[✓] Unnecessary daemon services disabled
+[✓] Unnecessary daemon services disabled (cups, rpcbind)
 [✓] UFW active: Ports 80, 443 & hardened SSH only`,
 
-    'hardening-audit': `[CIS BENCHMARK AUDIT] Score: 98/100 (HARDENED)
+    'hardening-audit': `[CIS BENCHMARK AUDIT] Security Score: 98/100 (HARDENED)
 [✓] Root SSH Disabled (PermitRootLogin no)
 [✓] Strict permissions on /etc/shadow (0600)
-[✓] Unnecessary daemon services disabled
+[✓] Unnecessary daemon services disabled (cups, rpcbind)
 [✓] UFW active: Ports 80, 443 & hardened SSH only`,
 
     'check-ssh': `File: /etc/ssh/sshd_config
 PermitRootLogin no | PasswordAuthentication no | MaxAuthTries 3
 [STATUS] SSH running in hardened key-only mode.`,
+
+    ufw: `Status: active
+Port 80/tcp (HTTP)     -> ALLOW Anywhere
+Port 443/tcp (HTTPS)   -> ALLOW Anywhere
+Port 22/tcp (SSH)      -> LIMIT 192.168.1.0/24`,
 
     'ufw status': `Status: active
 Port 80/tcp (HTTP)     -> ALLOW Anywhere
@@ -198,9 +222,9 @@ Port 22/tcp (SSH)      -> LIMIT 192.168.1.0/24`,
 stat -c "%a" /etc/shadow | grep -q "600" && echo "[+] Shadow secure"
 grep -q "^PermitRootLogin no" /etc/ssh/sshd_config && echo "[+] Root SSH: Disabled"`,
 
-    skills: `Cloud/DevOps : AWS (ECS, ECR, Fargate, EC2, IAM, S3), Docker, Jenkins, Git
-Security     : IAM Least Privilege, Linux Server Hardening, CIS Audits
-Code/Systems : Python (Flask), C++, Java, Linux, Nginx, MySQL`
+    skills: `Cloud & DevOps : AWS (ECS, ECR, Fargate, EC2, IAM, S3), Docker, Jenkins, Git
+Security       : IAM Least Privilege, Linux Server Hardening, CIS Audits
+Code & Systems : Python (Flask), C++, Java, Linux, Nginx, MySQL`
   };
 
   function exec(cmdRaw) {
@@ -208,7 +232,7 @@ Code/Systems : Python (Flask), C++, Java, Linux, Nginx, MySQL`
     if (!cmd) return;
 
     const rowIn = document.createElement('div');
-    rowIn.className = 'term-row';
+    rowIn.className = 'term-line';
     rowIn.innerHTML = `<span class="term-prompt">abhay@node:~$</span> <span>${cmdRaw}</span>`;
     screen.appendChild(rowIn);
 
@@ -216,12 +240,12 @@ Code/Systems : Python (Flask), C++, Java, Linux, Nginx, MySQL`
       screen.innerHTML = '';
     } else if (db[cmd]) {
       const out = document.createElement('div');
-      out.className = 'term-row text-cyan';
+      out.className = 'term-line text-cyan';
       out.innerHTML = `<pre style="font-family:inherit; white-space:pre-wrap;">${db[cmd]}</pre>`;
       screen.appendChild(out);
     } else {
       const err = document.createElement('div');
-      err.className = 'term-row text-red';
+      err.className = 'term-line text-red';
       err.textContent = `bash: command not found: ${cmdRaw}. Type 'help'.`;
       screen.appendChild(err);
     }
@@ -237,37 +261,37 @@ Code/Systems : Python (Flask), C++, Java, Linux, Nginx, MySQL`
   chips.forEach((c) => c.addEventListener('click', () => exec(c.getAttribute('data-cmd'))));
 }
 
-/* 5. AWS IAM Policy Inspector */
+/* 6. AWS IAM Policy Inspector */
 function initIAM() {
-  const pills = document.querySelectorAll('.role-pill');
+  const selectors = document.querySelectorAll('.role-selector');
   const codeEl = document.getElementById('iam-json-display');
   const btnCopy = document.getElementById('btn-copy-iam');
 
-  const ec2 = document.getElementById('iam-res-ec2');
-  const s3 = document.getElementById('iam-res-s3');
-  const ecs = document.getElementById('iam-res-ecs');
+  const ec2 = document.getElementById('iam-badge-ec2');
+  const s3 = document.getElementById('iam-badge-s3');
+  const ecs = document.getElementById('iam-badge-ecs');
 
   const policies = {
     devops: {
       ec2: 'ALLOWED', s3: 'ALLOWED', ecs: 'ALLOWED',
-      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "DevOpsLeastPrivilege",\n    "Effect": "Allow",\n    "Action": ["ec2:*", "ecs:*", "ecr:*", "s3:*"],\n    "Resource": "*"\n  }]\n}`
+      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "DevOpsLeastPrivilegeAccess",\n    "Effect": "Allow",\n    "Action": ["ec2:*", "ecs:*", "ecr:*", "s3:*"],\n    "Resource": "*"\n  }]\n}`
     },
     auditor: {
       ec2: 'READ-ONLY', s3: 'READ-ONLY', ecs: 'READ-ONLY',
-      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "AuditorReadOnly",\n    "Effect": "Allow",\n    "Action": ["ec2:Describe*", "s3:ListBucket", "cloudwatch:Get*"],\n    "Resource": "*"\n  }]\n}`
+      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "SecurityAuditorReadOnly",\n    "Effect": "Allow",\n    "Action": ["ec2:Describe*", "s3:ListBucket", "cloudwatch:Get*"],\n    "Resource": "*"\n  }]\n}`
     },
     guest: {
       ec2: 'DENIED', s3: 'DENIED', ecs: 'DENIED',
-      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "DenyAll",\n    "Effect": "Deny",\n    "Action": "*",\n    "Resource": "*"\n  }]\n}`
+      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "ExplicitDenyAll",\n    "Effect": "Deny",\n    "Action": "*",\n    "Resource": "*"\n  }]\n}`
     }
   };
 
-  pills.forEach((p) => {
-    p.addEventListener('click', () => {
-      pills.forEach((b) => b.classList.remove('active'));
-      p.classList.add('active');
+  selectors.forEach((sel) => {
+    sel.addEventListener('click', () => {
+      selectors.forEach((b) => b.classList.remove('active'));
+      sel.classList.add('active');
 
-      const role = p.getAttribute('data-role');
+      const role = sel.getAttribute('data-role');
       const data = policies[role];
       if (!data) return;
 
@@ -275,7 +299,7 @@ function initIAM() {
 
       const setBadge = (el, val) => {
         if (!el) return;
-        el.className = `res-badge ${val === 'DENIED' ? 'denied' : 'allowed'}`;
+        el.className = `status-pill-badge ${val === 'DENIED' ? 'denied' : 'allowed'}`;
         el.innerHTML = `<i class="fa-solid ${val === 'DENIED' ? 'fa-xmark' : 'fa-check'}"></i> ${val}`;
       };
 
@@ -293,8 +317,8 @@ function initIAM() {
   }
 }
 
-/* 6. Playable Tic-Tac-Toe Bot Game */
-function initMiniGame() {
+/* 7. Playable Bot Game */
+function initBotGame() {
   const cells = document.querySelectorAll('.ttt-cell');
   const status = document.getElementById('game-status');
   const btnRestart = document.getElementById('btn-restart-game');
@@ -326,7 +350,7 @@ function initMiniGame() {
     if (check(board, 'X')) {
       scores.p++;
       if (pScore) pScore.textContent = scores.p;
-      status.innerHTML = '<span class="text-emerald">You won!</span>';
+      status.innerHTML = '<span class="text-emerald">You won against the Bot!</span>';
       active = false;
       return;
     }
@@ -334,18 +358,17 @@ function initMiniGame() {
     if (board.every((c) => c !== '')) {
       scores.t++;
       if (tScore) tScore.textContent = scores.t;
-      status.innerHTML = '<span class="text-yellow">Draw!</span>';
+      status.innerHTML = '<span class="text-yellow">Draw Match!</span>';
       active = false;
       return;
     }
 
-    status.textContent = 'Bot calculating...';
+    status.textContent = 'Bot calculating move...';
     setTimeout(botMove, 250);
   }
 
   function botMove() {
     if (!active) return;
-    // Simple smart bot
     let move = -1;
     // 1. Win
     for (let i = 0; i < 9; i++) {
@@ -381,7 +404,7 @@ function initMiniGame() {
     if (check(board, 'O')) {
       scores.b++;
       if (bScore) bScore.textContent = scores.b;
-      status.innerHTML = '<span class="text-purple">Bot won!</span>';
+      status.innerHTML = '<span class="text-purple">Bot won this round!</span>';
       active = false;
       return;
     }
@@ -389,7 +412,7 @@ function initMiniGame() {
     if (board.every((c) => c !== '')) {
       scores.t++;
       if (tScore) tScore.textContent = scores.t;
-      status.innerHTML = '<span class="text-yellow">Draw!</span>';
+      status.innerHTML = '<span class="text-yellow">Draw Match!</span>';
       active = false;
       return;
     }
@@ -417,21 +440,21 @@ function initMiniGame() {
   }
 }
 
-/* 7. Skills Filtering */
-function initSkillsFilter() {
-  const pills = document.querySelectorAll('.filter-pill');
-  const cards = document.querySelectorAll('.tech-card');
+/* 8. Skills Arsenal Filtering */
+function initArsenalFilter() {
+  const chips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('.skill-neon-card');
 
-  pills.forEach((p) => {
-    p.addEventListener('click', () => {
-      pills.forEach((b) => b.classList.remove('active'));
-      p.classList.add('active');
+  chips.forEach((c) => {
+    c.addEventListener('click', () => {
+      chips.forEach((b) => b.classList.remove('active'));
+      c.classList.add('active');
 
-      const filter = p.getAttribute('data-filter');
+      const filter = c.getAttribute('data-filter');
       cards.forEach((card) => {
         const cat = card.getAttribute('data-cat');
         if (filter === 'all' || filter === cat) {
-          card.style.display = 'flex';
+          card.style.display = 'block';
         } else {
           card.style.display = 'none';
         }
@@ -440,13 +463,13 @@ function initSkillsFilter() {
   });
 }
 
-/* 8. Toasts & Copy to Clipboard */
+/* 9. Toasts & Clipboard Copy */
 function showToast(msg) {
   const box = document.getElementById('toast-container');
   if (!box) return;
   const t = document.createElement('div');
   t.className = 'toast';
-  t.innerHTML = `<i class="fa-solid fa-check text-cyan"></i> ${msg}`;
+  t.innerHTML = `<i class="fa-solid fa-bolt text-cyan"></i> ${msg}`;
   box.appendChild(t);
   setTimeout(() => {
     t.remove();
