@@ -1,106 +1,69 @@
 /**
- * ABHAY RANA - DEVOPS & CLOUD PORTFOLIO INTERACTIVE LOGIC
- * Features:
- * 1. Animated Particle / Dynamic Cyber Grid Canvas
- * 2. Typewriter Effect
- * 3. CI/CD Pipeline Simulator with Real-Time Console Stream
- * 4. AWS IAM Policy Inspector & Role Evaluator
- * 5. Linux Hardening Interactive Web Terminal
- * 6. Containerized Tic-Tac-Toe Bot Game
- * 7. Skill Matrix Filter
- * 8. Toast Notifications & Clipboard Handlers
+ * ABHAY RANA - VISUAL DEVOPS COMMAND DECK INTERACTION ENGINE
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initBackgroundCanvas();
-  initTypewriter();
-  initPipelineSimulator();
-  initIAMInspector();
-  initTerminalLab();
-  initTicTacToeGame();
+  initCanvas();
+  initDeckTabs();
+  initPipeline();
+  initTerminal();
+  initIAM();
+  initMiniGame();
   initSkillsFilter();
-  initContactAndClipboard();
-  initMobileNav();
-  initScrollSpy();
+  initClipboardAndToasts();
 });
 
-/* ==========================================================================
-   1. Dynamic Background Particle Canvas
-   ========================================================================== */
-function initBackgroundCanvas() {
+/* 1. Subtle Background Grid Particle Mesh */
+function initCanvas() {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
-  const particles = [];
-  const particleCount = Math.min(Math.floor((width * height) / 18000), 55);
+  const particles = Array.from({ length: 35 }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    radius: Math.random() * 1.5 + 0.5,
+    color: Math.random() > 0.5 ? '#00f0ff' : '#8b5cf6'
+  }));
 
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = (Math.random() - 0.5) * 0.4;
-      this.radius = Math.random() * 1.5 + 0.8;
-      this.alpha = Math.random() * 0.4 + 0.1;
-      this.color = Math.random() > 0.6 ? '#00f0ff' : '#8b5cf6';
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.globalAlpha = this.alpha;
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-
-  function animate() {
+  function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // Draw connecting lines between close particles
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 120) {
+        const dist = Math.hypot(dx, dy);
+        if (dist < 110) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = '#00f0ff';
-          ctx.globalAlpha = (1 - dist / 120) * 0.12;
-          ctx.lineWidth = 0.8;
+          ctx.globalAlpha = (1 - dist / 110) * 0.1;
           ctx.stroke();
         }
       }
     }
 
     particles.forEach((p) => {
-      p.update();
-      p.draw();
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = 0.25;
+      ctx.fill();
     });
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(render);
   }
-
-  animate();
+  render();
 
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
@@ -108,688 +71,367 @@ function initBackgroundCanvas() {
   });
 }
 
-/* ==========================================================================
-   2. Typewriter Effect
-   ========================================================================== */
-function initTypewriter() {
-  const target = document.getElementById('typewriter');
-  if (!target) return;
+/* 2. Visual Project Deck Tabs */
+function initDeckTabs() {
+  const tabs = document.querySelectorAll('.deck-tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
 
-  const words = [
-    'Aspiring DevOps Engineer',
-    'Cloud & Security Enthusiast',
-    'CI/CD Pipeline Automator',
-    'AWS Cloud Architect',
-    'Linux Hardening Practitioner'
-  ];
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('active'));
+      panels.forEach((p) => p.classList.remove('active'));
 
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  const typeSpeed = 80;
-  const deleteSpeed = 40;
-  const pauseTime = 1800;
-
-  function type() {
-    const currentWord = words[wordIndex];
-    if (isDeleting) {
-      target.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      target.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    let delay = isDeleting ? deleteSpeed : typeSpeed;
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      delay = pauseTime;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      delay = 400;
-    }
-
-    setTimeout(type, delay);
-  }
-
-  type();
+      tab.classList.add('active');
+      const targetId = tab.getAttribute('data-tab');
+      const targetPanel = document.getElementById(targetId);
+      if (targetPanel) targetPanel.classList.add('active');
+    });
+  });
 }
 
-/* ==========================================================================
-   3. CI/CD Pipeline Simulator
-   ========================================================================== */
-function initPipelineSimulator() {
+/* 3. Serverless CI/CD Pipeline Simulator */
+function initPipeline() {
   const btnTrigger = document.getElementById('btn-trigger-pipeline');
   const btnReset = document.getElementById('btn-reset-pipeline');
-  const statusBadge = document.getElementById('pipeline-status-text');
-  const logsContainer = document.getElementById('pipeline-logs');
-  const timerDisplay = document.getElementById('pipeline-timer');
-  const nodes = [1, 2, 3, 4, 5, 6].map((num) => document.getElementById(`pipe-node-${num}`));
+  const timer = document.getElementById('pipeline-timer');
+  const logs = document.getElementById('pipeline-logs');
+  const steps = [1, 2, 3, 4, 5, 6].map((n) => document.getElementById(`pipe-step-${n}`));
 
-  let isRunning = false;
-  let timerInterval = null;
-  let startTime = 0;
+  let running = false;
+  let timerId = null;
 
-  const pipelineStages = [
-    {
-      step: 1,
-      name: 'GitHub Webhook',
-      logs: [
-        '[GITHUB] Commit detected on branch: origin/main (SHA: 8f4b2c1)',
-        '[GITHUB] Webhook event dispatched -> POST https://jenkins.internal/github-webhook/'
-      ],
-      duration: 1200
-    },
-    {
-      step: 2,
-      name: 'Jenkins Build & Test',
-      logs: [
-        '[JENKINS] Pipeline job #142 triggered by GitHub push event.',
-        '[JENKINS] Stage (Unit & Integration Tests): Running pytest & flake8 linting...',
-        '[JENKINS] 42/42 tests passed in 1.4s. Zero lint errors. Exit Code: 0.'
-      ],
-      duration: 1600
-    },
-    {
-      step: 3,
-      name: 'Docker Multi-Stage Build',
-      logs: [
-        '[DOCKER] Building container image: app:v1.4.2 via Dockerfile...',
-        '[DOCKER] Multi-stage build complete. Optimized Alpine base image size: 48.2MB.',
-        '[SECURITY] Trivy CVE vulnerability scan complete: 0 CRITICAL, 0 HIGH found.'
-      ],
-      duration: 1800
-    },
-    {
-      step: 4,
-      name: 'AWS ECR Push',
-      logs: [
-        '[AWS-ECR] Authenticating with AWS STS temporary session token...',
-        '[AWS-ECR] Pushing image tag 123456789012.dkr.ecr.us-east-1.amazonaws.com/app:v1.4.2',
-        '[AWS-ECR] Image manifest uploaded & SHA-256 digest verified.'
-      ],
-      duration: 1500
-    },
-    {
-      step: 5,
-      name: 'AWS ECS Fargate Rollout',
-      logs: [
-        '[AWS-ECS] Updating ECS Task Definition: app-task-family:18',
-        '[AWS-ECS] Triggering zero-downtime Blue/Green rolling deployment on AWS Fargate...',
-        '[AWS-ECS] New tasks healthy in Target Group. Traffic routed to new container instances.'
-      ],
-      duration: 1900
-    },
-    {
-      step: 6,
-      name: 'CloudWatch Telemetry',
-      logs: [
-        '[CLOUDWATCH] Container logs connected: /aws/ecs/fargate-app-cluster',
-        '[CLOUDWATCH] Metric Alarms: CPU < 15%, Memory < 32%, Error Rate: 0.00%',
-        '[SUCCESS] Pipeline Execution Completed Successfully! Application is LIVE.'
-      ],
-      duration: 1200
-    }
+  const sequence = [
+    { text: '[1/6] [GITHUB] Webhook event received from branch: main (commit 9d4f21a)', dur: 800 },
+    { text: '[2/6] [JENKINS] Running automated tests: 42/42 tests passed in 0.8s.', dur: 900 },
+    { text: '[3/6] [DOCKER] Multi-stage build completed. Trivy scan: 0 critical CVEs.', dur: 1000 },
+    { text: '[4/6] [AWS ECR] Image pushed to 123456789.dkr.ecr.us-east-1.amazonaws.com/app:latest', dur: 800 },
+    { text: '[5/6] [ECS FARGATE] Zero-downtime rolling update deployed to cluster.', dur: 1100 },
+    { text: '[6/6] [CLOUDWATCH] Healthcheck: 200 OK. CPU < 12%. Pipeline PASSED (100% LIVE)!', dur: 700 }
   ];
 
-  function appendLog(text, colorClass = '') {
-    const p = document.createElement('div');
-    p.className = `log-line ${colorClass}`;
-    p.textContent = text;
-    logsContainer.appendChild(p);
-    logsContainer.scrollTop = logsContainer.scrollHeight;
+  function reset() {
+    clearInterval(timerId);
+    running = false;
+    steps.forEach((s) => s && s.classList.remove('active', 'done'));
+    timer.textContent = 'Ready';
+    logs.innerHTML = '<div class="log-entry text-muted">[READY] Click "Run Live Pipeline" to simulate end-to-end cloud deployment.</div>';
   }
 
-  function resetPipeline() {
-    clearInterval(timerInterval);
-    isRunning = false;
-    nodes.forEach((n) => {
-      if (n) {
-        n.classList.remove('node-active', 'node-success');
-      }
-    });
-    statusBadge.className = 'pipeline-status-badge';
-    statusBadge.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> READY FOR SIMULATION';
-    timerDisplay.textContent = 'Duration: 0.0s';
-    logsContainer.innerHTML =
-      '<div class="log-line text-muted">[INFO] Pipeline engine reset. Ready to trigger.</div>';
-  }
+  async function run() {
+    if (running) return;
+    running = true;
+    reset();
 
-  async function runPipeline() {
-    if (isRunning) return;
-    isRunning = true;
-    resetPipeline();
-
-    statusBadge.className = 'pipeline-status-badge running';
-    statusBadge.innerHTML = '<i class="fa-solid fa-gear fa-spin"></i> PIPELINE EXECUTING...';
-
-    startTime = performance.now();
-    timerInterval = setInterval(() => {
-      const elapsed = ((performance.now() - startTime) / 1000).toFixed(1);
-      timerDisplay.textContent = `Duration: ${elapsed}s`;
+    let start = performance.now();
+    timerId = setInterval(() => {
+      timer.textContent = `Running: ${((performance.now() - start) / 1000).toFixed(1)}s`;
     }, 100);
 
-    for (let i = 0; i < pipelineStages.length; i++) {
-      const stage = pipelineStages[i];
-      const currentNode = nodes[i];
+    for (let i = 0; i < sequence.length; i++) {
+      const stepEl = steps[i];
+      if (stepEl) stepEl.classList.add('active');
 
-      if (currentNode) {
-        currentNode.classList.add('node-active');
-      }
+      const log = document.createElement('div');
+      log.className = 'log-entry text-cyan';
+      log.textContent = sequence[i].text;
+      logs.appendChild(log);
+      logs.scrollTop = logs.scrollHeight;
 
-      for (const log of stage.logs) {
-        let color = '';
-        if (log.includes('[SUCCESS]')) color = 'text-emerald font-bold';
-        else if (log.includes('[SECURITY]')) color = 'text-cyan';
-        else if (log.includes('[CLOUDWATCH]')) color = 'text-purple';
-        else if (log.includes('[DOCKER]')) color = 'text-cyan';
-        else if (log.includes('[JENKINS]')) color = 'text-yellow';
-        appendLog(log, color);
-      }
+      await new Promise((r) => setTimeout(r, sequence[i].dur));
 
-      await new Promise((r) => setTimeout(r, stage.duration));
-
-      if (currentNode) {
-        currentNode.classList.remove('node-active');
-        currentNode.classList.add('node-success');
+      if (stepEl) {
+        stepEl.classList.remove('active');
+        stepEl.classList.add('done');
       }
     }
 
-    clearInterval(timerInterval);
-    statusBadge.className = 'pipeline-status-badge success';
-    statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> BUILD & DEPLOY PASSED';
-    isRunning = false;
-    showToast('CI/CD Pipeline simulation completed with 100% success!');
+    clearInterval(timerId);
+    timer.textContent = 'Status: SUCCESS (6/6)';
+    running = false;
+    showToast('CI/CD Pipeline simulation completed!');
   }
 
-  if (btnTrigger) btnTrigger.addEventListener('click', runPipeline);
-  if (btnReset) btnReset.addEventListener('click', resetPipeline);
+  if (btnTrigger) btnTrigger.addEventListener('click', run);
+  if (btnReset) btnReset.addEventListener('click', reset);
 }
 
-/* ==========================================================================
-   4. AWS Cloud Infrastructure & IAM Policy Inspector
-   ========================================================================== */
-function initIAMInspector() {
-  const roleButtons = document.querySelectorAll('.role-btn');
-  const policyCode = document.getElementById('policy-code-output');
-  const btnCopyPolicy = document.getElementById('btn-copy-policy');
+/* 4. Linux Hardening Interactive Terminal */
+function initTerminal() {
+  const screen = document.getElementById('term-screen');
+  const input = document.getElementById('term-input');
+  const sendBtn = document.getElementById('term-send-btn');
+  const chips = document.querySelectorAll('.cmd-pill');
 
-  const badgeEC2 = document.getElementById('badge-ec2');
-  const badgeS3 = document.getElementById('badge-s3');
-  const badgeECS = document.getElementById('badge-ecs');
+  if (!screen || !input) return;
 
-  const rolePolicies = {
-    'devops-lead': {
-      ec2: { status: 'ALLOWED', class: 'access-pill', icon: 'fa-check' },
-      s3: { status: 'ALLOWED', class: 'access-pill', icon: 'fa-check' },
-      ecs: { status: 'ALLOWED', class: 'access-pill', icon: 'fa-check' },
-      json: `{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "DevOpsLeastPrivilegeRole",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:Describe*",
-        "ec2:StartInstances",
-        "ec2:StopInstances",
-        "ecs:UpdateService",
-        "ecr:GetAuthorizationToken",
-        "ecr:BatchCheckLayerAvailability",
-        "s3:GetObject",
-        "s3:PutObject"
-      ],
-      "Resource": "*"
+  const db = {
+    help: `Commands:
+  - audit / hardening-audit : Run CIS benchmark audit
+  - check-ssh               : Check SSH hardening config
+  - ufw / ufw status        : Check firewall rules
+  - cat audit.sh            : View automation shell script
+  - skills                  : List core technical competencies
+  - clear                   : Clear terminal`,
+
+    audit: `[CIS BENCHMARK AUDIT] Score: 98/100 (HARDENED)
+[✓] Root SSH Disabled (PermitRootLogin no)
+[✓] Strict permissions on /etc/shadow (0600)
+[✓] Unnecessary daemon services disabled
+[✓] UFW active: Ports 80, 443 & hardened SSH only`,
+
+    'hardening-audit': `[CIS BENCHMARK AUDIT] Score: 98/100 (HARDENED)
+[✓] Root SSH Disabled (PermitRootLogin no)
+[✓] Strict permissions on /etc/shadow (0600)
+[✓] Unnecessary daemon services disabled
+[✓] UFW active: Ports 80, 443 & hardened SSH only`,
+
+    'check-ssh': `File: /etc/ssh/sshd_config
+PermitRootLogin no | PasswordAuthentication no | MaxAuthTries 3
+[STATUS] SSH running in hardened key-only mode.`,
+
+    'ufw status': `Status: active
+Port 80/tcp (HTTP)     -> ALLOW Anywhere
+Port 443/tcp (HTTPS)   -> ALLOW Anywhere
+Port 22/tcp (SSH)      -> LIMIT 192.168.1.0/24`,
+
+    'cat audit.sh': `#!/bin/bash
+stat -c "%a" /etc/shadow | grep -q "600" && echo "[+] Shadow secure"
+grep -q "^PermitRootLogin no" /etc/ssh/sshd_config && echo "[+] Root SSH: Disabled"`,
+
+    skills: `Cloud/DevOps : AWS (ECS, ECR, Fargate, EC2, IAM, S3), Docker, Jenkins, Git
+Security     : IAM Least Privilege, Linux Server Hardening, CIS Audits
+Code/Systems : Python (Flask), C++, Java, Linux, Nginx, MySQL`
+  };
+
+  function exec(cmdRaw) {
+    const cmd = cmdRaw.trim().toLowerCase();
+    if (!cmd) return;
+
+    const rowIn = document.createElement('div');
+    rowIn.className = 'term-row';
+    rowIn.innerHTML = `<span class="term-prompt">abhay@node:~$</span> <span>${cmdRaw}</span>`;
+    screen.appendChild(rowIn);
+
+    if (cmd === 'clear') {
+      screen.innerHTML = '';
+    } else if (db[cmd]) {
+      const out = document.createElement('div');
+      out.className = 'term-row text-cyan';
+      out.innerHTML = `<pre style="font-family:inherit; white-space:pre-wrap;">${db[cmd]}</pre>`;
+      screen.appendChild(out);
+    } else {
+      const err = document.createElement('div');
+      err.className = 'term-row text-red';
+      err.textContent = `bash: command not found: ${cmdRaw}. Type 'help'.`;
+      screen.appendChild(err);
     }
-  ]
-}`
+
+    input.value = '';
+    screen.scrollTop = screen.scrollHeight;
+  }
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') exec(input.value);
+  });
+  if (sendBtn) sendBtn.addEventListener('click', () => exec(input.value));
+  chips.forEach((c) => c.addEventListener('click', () => exec(c.getAttribute('data-cmd'))));
+}
+
+/* 5. AWS IAM Policy Inspector */
+function initIAM() {
+  const pills = document.querySelectorAll('.role-pill');
+  const codeEl = document.getElementById('iam-json-display');
+  const btnCopy = document.getElementById('btn-copy-iam');
+
+  const ec2 = document.getElementById('iam-res-ec2');
+  const s3 = document.getElementById('iam-res-s3');
+  const ecs = document.getElementById('iam-res-ecs');
+
+  const policies = {
+    devops: {
+      ec2: 'ALLOWED', s3: 'ALLOWED', ecs: 'ALLOWED',
+      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "DevOpsLeastPrivilege",\n    "Effect": "Allow",\n    "Action": ["ec2:*", "ecs:*", "ecr:*", "s3:*"],\n    "Resource": "*"\n  }]\n}`
     },
-    'security-auditor': {
-      ec2: { status: 'READ-ONLY', class: 'access-pill', icon: 'fa-eye' },
-      s3: { status: 'READ-ONLY', class: 'access-pill', icon: 'fa-eye' },
-      ecs: { status: 'READ-ONLY', class: 'access-pill', icon: 'fa-eye' },
-      json: `{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "SecurityAuditorReadOnly",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:Describe*",
-        "ec2:Get*",
-        "ecs:Describe*",
-        "ecr:Describe*",
-        "s3:ListBucket",
-        "cloudwatch:GetMetricData",
-        "cloudtrail:LookupEvents"
-      ],
-      "Resource": "*"
-    }
-  ]
-}`
+    auditor: {
+      ec2: 'READ-ONLY', s3: 'READ-ONLY', ecs: 'READ-ONLY',
+      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "AuditorReadOnly",\n    "Effect": "Allow",\n    "Action": ["ec2:Describe*", "s3:ListBucket", "cloudwatch:Get*"],\n    "Resource": "*"\n  }]\n}`
     },
-    'unauthorized-guest': {
-      ec2: { status: 'DENIED', class: 'access-pill denied', icon: 'fa-xmark' },
-      s3: { status: 'DENIED', class: 'access-pill denied', icon: 'fa-xmark' },
-      ecs: { status: 'DENIED', class: 'access-pill denied', icon: 'fa-xmark' },
-      json: `{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "ExplicitDenyAll",
-      "Effect": "Deny",
-      "Action": "*",
-      "Resource": "*"
-    }
-  ]
-}`
+    guest: {
+      ec2: 'DENIED', s3: 'DENIED', ecs: 'DENIED',
+      json: `{\n  "Version": "2012-10-17",\n  "Statement": [{\n    "Sid": "DenyAll",\n    "Effect": "Deny",\n    "Action": "*",\n    "Resource": "*"\n  }]\n}`
     }
   };
 
-  roleButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      roleButtons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
+  pills.forEach((p) => {
+    p.addEventListener('click', () => {
+      pills.forEach((b) => b.classList.remove('active'));
+      p.classList.add('active');
 
-      const roleKey = btn.getAttribute('data-role');
-      const data = rolePolicies[roleKey];
+      const role = p.getAttribute('data-role');
+      const data = policies[role];
       if (!data) return;
 
-      policyCode.textContent = data.json;
+      codeEl.querySelector('code').textContent = data.json;
 
-      if (badgeEC2) {
-        badgeEC2.className = data.ec2.class;
-        badgeEC2.innerHTML = `<i class="fa-solid ${data.ec2.icon}"></i> ${data.ec2.status}`;
-      }
-      if (badgeS3) {
-        badgeS3.className = data.s3.class;
-        badgeS3.innerHTML = `<i class="fa-solid ${data.s3.icon}"></i> ${data.s3.status}`;
-      }
-      if (badgeECS) {
-        badgeECS.className = data.ecs.class;
-        badgeECS.innerHTML = `<i class="fa-solid ${data.ecs.icon}"></i> ${data.ecs.status}`;
-      }
+      const setBadge = (el, val) => {
+        if (!el) return;
+        el.className = `res-badge ${val === 'DENIED' ? 'denied' : 'allowed'}`;
+        el.innerHTML = `<i class="fa-solid ${val === 'DENIED' ? 'fa-xmark' : 'fa-check'}"></i> ${val}`;
+      };
+
+      setBadge(ec2, data.ec2);
+      setBadge(s3, data.s3);
+      setBadge(ecs, data.ecs);
     });
   });
 
-  if (btnCopyPolicy) {
-    btnCopyPolicy.addEventListener('click', () => {
-      navigator.clipboard.writeText(policyCode.textContent.trim());
+  if (btnCopy) {
+    btnCopy.addEventListener('click', () => {
+      navigator.clipboard.writeText(codeEl.querySelector('code').textContent);
       showToast('IAM Policy JSON copied to clipboard!');
     });
   }
 }
 
-/* ==========================================================================
-   5. Linux Hardening Interactive Web Terminal
-   ========================================================================== */
-function initTerminalLab() {
-  const termScreen = document.getElementById('term-screen');
-  const termInput = document.getElementById('term-input');
-  const termSendBtn = document.getElementById('term-send-btn');
-  const quickCmdChips = document.querySelectorAll('.quick-cmd-chip');
-
-  if (!termScreen || !termInput) return;
-
-  const commandResponses = {
-    help: `Available commands:
-  - audit / hardening-audit : Run automated CIS benchmark checks
-  - check-ssh               : Inspect hardened SSH configuration
-  - ufw / ufw status        : Inspect active firewall & port filters
-  - cat audit.sh            : View Abhay's automated shell audit script
-  - skills                  : Output technical competencies
-  - projects                : List portfolio DevOps projects
-  - whoami / about          : Display profile summary
-  - contact                 : Display email, phone, and social links
-  - clear                   : Clear terminal output`,
-
-    audit: `[CIS-AUDIT] Running security audit against benchmark v2.4...
-[PASS] Root SSH access disabled (PermitRootLogin no)
-[PASS] Password authentication disabled (Key-based only)
-[PASS] Permissions on /etc/shadow set to 0600
-[PASS] Permissions on /etc/passwd set to 0644
-[PASS] Unnecessary services disabled (cups, rpcbind, avahi)
-[PASS] Sysctl kernel hardening applied (tcp_syncookies = 1, rp_filter = 1)
-[PASS] UFW active: Only ports 80, 443, and hardened SSH open.
----------------------------------------------------------
-Audit Summary: 7/7 checks passed. Security Score: 98/100 (HARDENED)`,
-
-    'hardening-audit': `[CIS-AUDIT] Running security audit against benchmark v2.4...
-[PASS] Root SSH access disabled (PermitRootLogin no)
-[PASS] Password authentication disabled (Key-based only)
-[PASS] Permissions on /etc/shadow set to 0600
-[PASS] Permissions on /etc/passwd set to 0644
-[PASS] Unnecessary services disabled (cups, rpcbind, avahi)
-[PASS] Sysctl kernel hardening applied (tcp_syncookies = 1, rp_filter = 1)
-[PASS] UFW active: Only ports 80, 443, and hardened SSH open.
----------------------------------------------------------
-Audit Summary: 7/7 checks passed. Security Score: 98/100 (HARDENED)`,
-
-    'check-ssh': `Configuration file: /etc/ssh/sshd_config
----------------------------------------------
-Port 2222 (Non-standard port configured)
-PermitRootLogin no
-PasswordAuthentication no
-PubkeyAuthentication yes
-MaxAuthTries 3
-X11Forwarding no
-AllowAgentForwarding no
-[STATUS] SSH daemon running in hardened least-privilege mode.`,
-
-    ufw: `Status: active
-Logging: on (low)
-Default: deny (incoming), allow (outgoing), disabled (routed)
-
-To                         Action      From
---                         ------      ----
-80/tcp (HTTP)              ALLOW IN    Anywhere
-443/tcp (HTTPS)            ALLOW IN    Anywhere
-2222/tcp (SSH-Hardened)    LIMIT IN    192.168.1.0/24`,
-
-    'ufw status': `Status: active
-Logging: on (low)
-Default: deny (incoming), allow (outgoing), disabled (routed)
-
-To                         Action      From
---                         ------      ----
-80/tcp (HTTP)              ALLOW IN    Anywhere
-443/tcp (HTTPS)            ALLOW IN    Anywhere
-2222/tcp (SSH-Hardened)    LIMIT IN    192.168.1.0/24`,
-
-    'cat /etc/security/audit.sh': `#!/usr/bin/env bash
-# Linux Server Hardening Automation Script by Abhay Rana
-echo "[*] Checking /etc/shadow permissions..."
-stat -c "%a" /etc/shadow | grep -q "600" && echo "[+] Shadow permissions SECURE" || chmod 600 /etc/shadow
-
-echo "[*] Auditing SSH configuration..."
-grep -q "^PermitRootLogin no" /etc/ssh/sshd_config && echo "[+] Root SSH: DISABLED"
-
-echo "[*] Checking open listening sockets..."
-ss -tuln | grep -E "(:21|:23|:25)" && echo "[-] Insecure legacy ports open!" || echo "[+] No legacy ports open."`,
-
-    'cat audit.sh': `#!/usr/bin/env bash
-# Linux Server Hardening Automation Script by Abhay Rana
-echo "[*] Checking /etc/shadow permissions..."
-stat -c "%a" /etc/shadow | grep -q "600" && echo "[+] Shadow permissions SECURE" || chmod 600 /etc/shadow
-
-echo "[*] Auditing SSH configuration..."
-grep -q "^PermitRootLogin no" /etc/ssh/sshd_config && echo "[+] Root SSH: DISABLED"
-
-echo "[*] Checking open listening sockets..."
-ss -tuln | grep -E "(:21|:23|:25)" && echo "[-] Insecure legacy ports open!" || echo "[+] No legacy ports open."`,
-
-    skills: `Cloud & DevOps : AWS (EC2, IAM, S3, ECS, ECR, Fargate), Docker, Jenkins, CI/CD, Git
-Security       : IAM Least-Privilege, Linux Hardening, CIS Audits, DevSecOps
-Programming    : Python (Flask), C++, Java, HTML5, CSS3, JavaScript
-Systems/Data   : Linux Administration, SSH, Nginx, TCP/IP Networking, MySQL`,
-
-    projects: `1. Automated Serverless CI/CD Pipeline Deployment (GitHub, Jenkins, Docker, AWS ECS Fargate, ECR)
-2. AWS Cloud Infrastructure with IAM Security (EC2, IAM Least-Privilege, Linux sysadmin)
-3. Linux Server Hardening Security Automation (Bash audits, CIS benchmarks, UFW)
-4. Containerized Tic-Tac-Toe with Bot Mode (Python Flask, MySQL, Docker Compose, Nginx)`,
-
-    whoami: `Abhay Rana - Aspiring DevOps Engineer & Cloud Security Enthusiast
-Pursuing Bachelor of Computer Applications (2024-2027) at CGC Jhanjeri.
-Currently preparing for AWS Certified Cloud Practitioner.`,
-
-    about: `Abhay Rana - Aspiring DevOps Engineer & Cloud Security Enthusiast
-Pursuing Bachelor of Computer Applications (2024-2027) at CGC Jhanjeri.
-Currently preparing for AWS Certified Cloud Practitioner.`,
-
-    contact: `Email    : Abhiryana0263@gmail.com
-Phone    : +91 9015210665
-GitHub   : https://github.com/Abhay0263
-LinkedIn : Abhay Rana`
-  };
-
-  function executeCommand(rawCmd) {
-    const cmd = rawCmd.trim().toLowerCase();
-    if (!cmd) return;
-
-    // Echo input
-    const inputEcho = document.createElement('div');
-    inputEcho.className = 'term-line';
-    inputEcho.innerHTML = `<span class="term-prompt-user">abhay@hardened-node</span><span class="text-muted">:</span><span class="term-prompt-path">~</span><span class="term-prompt-symbol">$</span> <span>${rawCmd}</span>`;
-    termScreen.appendChild(inputEcho);
-
-    if (cmd === 'clear') {
-      termScreen.innerHTML = '';
-    } else if (commandResponses[cmd]) {
-      const responseEl = document.createElement('div');
-      responseEl.className = 'term-line output-text text-cyan';
-      responseEl.innerHTML = `<pre style="font-family: inherit; white-space: pre-wrap;">${commandResponses[cmd]}</pre>`;
-      termScreen.appendChild(responseEl);
-    } else {
-      const notFoundEl = document.createElement('div');
-      notFoundEl.className = 'term-line output-text text-red';
-      notFoundEl.textContent = `bash: command not found: ${rawCmd}. Type 'help' to see valid commands.`;
-      termScreen.appendChild(notFoundEl);
-    }
-
-    termInput.value = '';
-    termScreen.scrollTop = termScreen.scrollHeight;
-  }
-
-  termInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      executeCommand(termInput.value);
-    }
-  });
-
-  if (termSendBtn) {
-    termSendBtn.addEventListener('click', () => {
-      executeCommand(termInput.value);
-    });
-  }
-
-  quickCmdChips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const cmd = chip.getAttribute('data-cmd');
-      executeCommand(cmd);
-    });
-  });
-}
-
-/* ==========================================================================
-   6. Containerized Tic-Tac-Toe Playable Game with Bot AI
-   ========================================================================== */
-function initTicTacToeGame() {
+/* 6. Playable Tic-Tac-Toe Bot Game */
+function initMiniGame() {
   const cells = document.querySelectorAll('.ttt-cell');
-  const statusText = document.getElementById('game-status-text');
-  const btnReset = document.getElementById('btn-reset-game');
+  const status = document.getElementById('game-status');
+  const btnRestart = document.getElementById('btn-restart-game');
 
-  const scorePlayerEl = document.getElementById('player-score');
-  const scoreTiesEl = document.getElementById('ties-score');
-  const scoreBotEl = document.getElementById('bot-score');
+  const pScore = document.getElementById('score-player');
+  const tScore = document.getElementById('score-ties');
+  const bScore = document.getElementById('score-bot');
 
   let board = ['', '', '', '', '', '', '', '', ''];
-  let gameActive = true;
-  let currentPlayer = 'X'; // Human is X, Bot is O
+  let active = true;
+  let scores = { p: 0, t: 0, b: 0 };
 
-  let scores = { player: 0, ties: 0, bot: 0 };
-
-  const winningConditions = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-    [0, 4, 8], [2, 4, 6]             // Diagonals
+  const wins = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
   ];
 
-  function checkWin(currentBoard, player) {
-    for (const condition of winningConditions) {
-      if (
-        currentBoard[condition[0]] === player &&
-        currentBoard[condition[1]] === player &&
-        currentBoard[condition[2]] === player
-      ) {
-        return condition;
-      }
-    }
-    return null;
+  function check(b, mark) {
+    return wins.some((w) => w.every((i) => b[i] === mark));
   }
 
-  function checkTie(currentBoard) {
-    return currentBoard.every((cell) => cell !== '');
-  }
+  function handleMove(idx) {
+    if (board[idx] !== '' || !active) return;
+    board[idx] = 'X';
+    cells[idx].textContent = 'X';
+    cells[idx].classList.add('x');
 
-  function handleCellClick(e) {
-    const clickedCell = e.target;
-    const clickedIndex = parseInt(clickedCell.getAttribute('data-index'), 10);
-
-    if (board[clickedIndex] !== '' || !gameActive || currentPlayer !== 'X') {
+    if (check(board, 'X')) {
+      scores.p++;
+      if (pScore) pScore.textContent = scores.p;
+      status.innerHTML = '<span class="text-emerald">You won!</span>';
+      active = false;
       return;
     }
 
-    makeMove(clickedIndex, 'X');
-
-    const winLine = checkWin(board, 'X');
-    if (winLine) {
-      endGame('player', winLine);
+    if (board.every((c) => c !== '')) {
+      scores.t++;
+      if (tScore) tScore.textContent = scores.t;
+      status.innerHTML = '<span class="text-yellow">Draw!</span>';
+      active = false;
       return;
     }
 
-    if (checkTie(board)) {
-      endGame('tie');
-      return;
-    }
-
-    // Bot move
-    currentPlayer = 'O';
-    statusText.textContent = 'Bot is calculating move via Python/Flask API...';
-    setTimeout(botTurn, 400);
+    status.textContent = 'Bot calculating...';
+    setTimeout(botMove, 250);
   }
 
-  function makeMove(index, player) {
-    board[index] = player;
-    const cell = cells[index];
-    cell.textContent = player;
-    cell.classList.add(player === 'X' ? 'x-mark' : 'o-mark');
-  }
-
-  function botTurn() {
-    if (!gameActive) return;
-
-    // AI logic: 1. Win if possible, 2. Block player win, 3. Take center, 4. Random available
-    let bestMove = findBestMove();
-    makeMove(bestMove, 'O');
-
-    const winLine = checkWin(board, 'O');
-    if (winLine) {
-      endGame('bot', winLine);
-      return;
-    }
-
-    if (checkTie(board)) {
-      endGame('tie');
-      return;
-    }
-
-    currentPlayer = 'X';
-    statusText.textContent = 'Your turn (X). Choose your tile.';
-  }
-
-  function findBestMove() {
-    // 1. Check if bot can win in 1 move
+  function botMove() {
+    if (!active) return;
+    // Simple smart bot
+    let move = -1;
+    // 1. Win
     for (let i = 0; i < 9; i++) {
       if (board[i] === '') {
         board[i] = 'O';
-        if (checkWin(board, 'O')) {
-          board[i] = '';
-          return i;
-        }
+        if (check(board, 'O')) { move = i; }
         board[i] = '';
+        if (move !== -1) break;
       }
     }
-
-    // 2. Check if player could win and block them
-    for (let i = 0; i < 9; i++) {
-      if (board[i] === '') {
-        board[i] = 'X';
-        if (checkWin(board, 'X')) {
+    // 2. Block
+    if (move === -1) {
+      for (let i = 0; i < 9; i++) {
+        if (board[i] === '') {
+          board[i] = 'X';
+          if (check(board, 'X')) { move = i; }
           board[i] = '';
-          return i;
+          if (move !== -1) break;
         }
-        board[i] = '';
       }
     }
-
-    // 3. Take center if available
-    if (board[4] === '') return 4;
-
-    // 4. Take corners
-    const corners = [0, 2, 6, 8].filter((i) => board[i] === '');
-    if (corners.length > 0) {
-      return corners[Math.floor(Math.random() * corners.length)];
+    // 3. Center or empty
+    if (move === -1 && board[4] === '') move = 4;
+    if (move === -1) {
+      const avail = board.map((v, i) => v === '' ? i : null).filter((v) => v !== null);
+      move = avail[Math.floor(Math.random() * avail.length)];
     }
 
-    // 5. Take any remaining
-    const emptyIndices = board
-      .map((val, idx) => (val === '' ? idx : null))
-      .filter((val) => val !== null);
-    return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
-  }
+    board[move] = 'O';
+    cells[move].textContent = 'O';
+    cells[move].classList.add('o');
 
-  function endGame(result, winLine = null) {
-    gameActive = false;
-
-    if (result === 'player') {
-      scores.player++;
-      if (scorePlayerEl) scorePlayerEl.textContent = scores.player;
-      statusText.innerHTML = '<span class="text-emerald"><i class="fa-solid fa-trophy"></i> You won against the Bot!</span>';
-      if (winLine) highlightWin(winLine);
-    } else if (result === 'bot') {
-      scores.bot++;
-      if (scoreBotEl) scoreBotEl.textContent = scores.bot;
-      statusText.innerHTML = '<span class="text-purple"><i class="fa-solid fa-robot"></i> Bot won this match!</span>';
-      if (winLine) highlightWin(winLine);
-    } else {
-      scores.ties++;
-      if (scoreTiesEl) scoreTiesEl.textContent = scores.ties;
-      statusText.innerHTML = '<span class="text-yellow"><i class="fa-solid fa-handshake"></i> Draw game!</span>';
+    if (check(board, 'O')) {
+      scores.b++;
+      if (bScore) bScore.textContent = scores.b;
+      status.innerHTML = '<span class="text-purple">Bot won!</span>';
+      active = false;
+      return;
     }
+
+    if (board.every((c) => c !== '')) {
+      scores.t++;
+      if (tScore) tScore.textContent = scores.t;
+      status.innerHTML = '<span class="text-yellow">Draw!</span>';
+      active = false;
+      return;
+    }
+
+    status.textContent = 'Your turn (X).';
   }
 
-  function highlightWin(line) {
-    line.forEach((idx) => {
-      cells[idx].classList.add('win-cell');
+  cells.forEach((c) => {
+    c.addEventListener('click', () => {
+      const idx = parseInt(c.getAttribute('data-idx'), 10);
+      handleMove(idx);
+    });
+  });
+
+  if (btnRestart) {
+    btnRestart.addEventListener('click', () => {
+      board = ['', '', '', '', '', '', '', '', ''];
+      active = true;
+      status.textContent = 'Your turn! Click any tile.';
+      cells.forEach((c) => {
+        c.textContent = '';
+        c.className = 'ttt-cell';
+      });
     });
   }
-
-  function resetGame() {
-    board = ['', '', '', '', '', '', '', '', ''];
-    gameActive = true;
-    currentPlayer = 'X';
-    statusText.textContent = 'Your turn! Click any grid tile to move.';
-    cells.forEach((cell) => {
-      cell.textContent = '';
-      cell.className = 'ttt-cell';
-    });
-  }
-
-  cells.forEach((cell) => cell.addEventListener('click', handleCellClick));
-  if (btnReset) btnReset.addEventListener('click', resetGame);
 }
 
-/* ==========================================================================
-   7. Technical Skills Matrix Filtering
-   ========================================================================== */
+/* 7. Skills Filtering */
 function initSkillsFilter() {
-  const filterBtns = document.querySelectorAll('.skill-filter-btn');
-  const skillCards = document.querySelectorAll('.skill-card');
+  const pills = document.querySelectorAll('.filter-pill');
+  const cards = document.querySelectorAll('.tech-card');
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
+  pills.forEach((p) => {
+    p.addEventListener('click', () => {
+      pills.forEach((b) => b.classList.remove('active'));
+      p.classList.add('active');
 
-      const filter = btn.getAttribute('data-filter');
-
-      skillCards.forEach((card) => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || filter === category) {
+      const filter = p.getAttribute('data-filter');
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-cat');
+        if (filter === 'all' || filter === cat) {
           card.style.display = 'flex';
-          card.style.animation = 'fadeInLog 0.3s ease forwards';
         } else {
           card.style.display = 'none';
         }
@@ -798,92 +440,27 @@ function initSkillsFilter() {
   });
 }
 
-/* ==========================================================================
-   8. Contact Form, Copy to Clipboard & Toasts
-   ========================================================================== */
-function showToast(message) {
-  const container = document.getElementById('toast-container');
-  if (!container) return;
-
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerHTML = `<i class="fa-solid fa-circle-check text-cyan"></i> <span>${message}</span>`;
-  container.appendChild(toast);
-
+/* 8. Toasts & Copy to Clipboard */
+function showToast(msg) {
+  const box = document.getElementById('toast-container');
+  if (!box) return;
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<i class="fa-solid fa-check text-cyan"></i> ${msg}`;
+  box.appendChild(t);
   setTimeout(() => {
-    toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateX(100%)';
-    setTimeout(() => toast.remove(), 300);
-  }, 3200);
+    t.remove();
+  }, 2500);
 }
 
-function initContactAndClipboard() {
-  // Copy contact buttons
-  const copyButtons = document.querySelectorAll('.copy-contact-btn');
-  copyButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const textToCopy = btn.getAttribute('data-copy');
-      if (textToCopy) {
-        navigator.clipboard.writeText(textToCopy);
-        showToast(`Copied "${textToCopy}" to clipboard!`);
-      }
-    });
-  });
-
-  // Contact form submission
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('contact-name').value;
-      showToast(`Thank you, ${name}! Your message has been simulated & routed to Abhay.`);
-      contactForm.reset();
-    });
-  }
-}
-
-/* ==========================================================================
-   9. Mobile Navigation Toggle & ScrollSpy
-   ========================================================================== */
-function initMobileNav() {
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const navLinks = document.getElementById('nav-links');
-  const links = document.querySelectorAll('.nav-link');
-
-  if (!menuBtn || !navLinks) return;
-
-  menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('mobile-open');
-  });
-
-  links.forEach((l) => {
-    l.addEventListener('click', () => {
-      navLinks.classList.remove('mobile-open');
-    });
-  });
-}
-
-function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollY = window.pageYOffset;
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 120;
-      const sectionHeight = section.offsetHeight;
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach((link) => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
+function initClipboardAndToasts() {
+  const copyElements = document.querySelectorAll('.copy-chip');
+  copyElements.forEach((el) => {
+    el.addEventListener('click', () => {
+      const text = el.getAttribute('data-copy');
+      if (text) {
+        navigator.clipboard.writeText(text);
+        showToast(`Copied: ${text}`);
       }
     });
   });
