@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhay Rana | DevOps & Cloud Security Engineer</title>
+  <meta name="description" content="Portfolio of Abhay Rana - Aspiring DevOps Engineer & Cloud Security Enthusiast specializing in AWS, CI/CD Pipelines, Docker, Linux Hardening, and IAM Architecture.">
+  <meta name="keywords" content="Abhay Rana, DevOps Engineer, Cloud Security, AWS, Docker, Jenkins, CI/CD, Linux Hardening, IAM, ECS, Fargate">
+  <meta name="author" content="Abhay Rana">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons for high quality tech icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Canvas Background for animated dynamic grid / particle mesh -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar container">
+      <a href="#hero" class="brand-logo">
+        <span class="brand-bracket">&lt;</span>
+        <span class="brand-name">ABHAY.RANA</span>
+        <span class="brand-bracket">/&gt;</span>
+        <span class="pulse-dot" title="System Online"></span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#pipeline-section" class="nav-link"><i class="fa-solid fa-diagram-project"></i> CI/CD Pipeline</a></li>
+        <li><a href="#iam-section" class="nav-link"><i class="fa-solid fa-shield-halved"></i> Cloud & IAM</a></li>
+        <li><a href="#linux-section" class="nav-link"><i class="fa-solid fa-terminal"></i> Hardening Lab</a></li>
+        <li><a href="#game-section" class="nav-link"><i class="fa-brands fa-docker"></i> Docker App</a></li>
+        <li><a href="#skills-section" class="nav-link"><i class="fa-solid fa-layer-group"></i> Skills</a></li>
+        <li><a href="#education-section" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Timeline</a></li>
+        <li><a href="#contact-section" class="nav-link cta-link"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section section-padding">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="status-pill">
+            <span class="status-indicator"></span>
+            <span>AVAILABLE FOR DEVOPS & CLOUD OPPORTUNITIES</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Abhay Rana</span>
+            <br>
+            <span class="typewriter-text" id="typewriter"></span>
+          </h1>
+
+          <p class="hero-description">
+            Aspiring DevOps Engineer with a solid foundation in cloud architecture, CI/CD pipeline automation, Linux administration, and DevSecOps. Driven to build secure, scalable, and reliable cloud-native infrastructure.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#pipeline-section" class="btn btn-primary">
+              <i class="fa-solid fa-play"></i> Run CI/CD Simulation
+            </a>
+            <a href="#linux-section" class="btn btn-secondary">
+              <i class="fa-solid fa-terminal"></i> Security Terminal
+            </a>
+            <a href="https://github.com/Abhay0263" target="_blank" rel="noopener noreferrer" class="btn btn-glass">
+              <i class="fa-brands fa-github"></i> GitHub Profile
+            </a>
+          </div>
+
+          <!-- Quick Stats HUD -->
+          <div class="hero-hud-grid">
+            <div class="hud-card">
+              <div class="hud-icon"><i class="fa-brands fa-aws"></i></div>
+              <div class="hud-info">
+                <span class="hud-value">AWS Cloud</span>
+                <span class="hud-label">ECS, ECR, EC2, IAM, S3</span>
+              </div>
+            </div>
+            <div class="hud-card">
+              <div class="hud-icon"><i class="fa-solid fa-shield-virus"></i></div>
+              <div class="hud-info">
+                <span class="hud-value">98% CIS Score</span>
+                <span class="hud-label">Linux Server Hardened</span>
+              </div>
+            </div>
+            <div class="hud-card">
+              <div class="hud-icon"><i class="fa-brands fa-docker"></i></div>
+              <div class="hud-info">
+                <span class="hud-value">Serverless CI/CD</span>
+                <span class="hud-label">GitHub + Jenkins + Fargate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Element: Interactive System Architecture Hologram -->
+        <div class="hero-visual">
+          <div class="glass-terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="terminal-title"><i class="fa-solid fa-microchip"></i> abhay@cloud-bastion: ~</div>
+              <div class="terminal-badge">LIVE NODE</div>
+            </div>
+            <div class="terminal-body-hud">
+              <div class="hud-telemetry-row">
+                <span class="hud-key">ROLE:</span>
+                <span class="hud-val text-cyan">DevOps & Cloud Security Engineer</span>
+              </div>
+              <div class="hud-telemetry-row">
+                <span class="hud-key">CLOUD:</span>
+                <span class="hud-val text-emerald">AWS (Fargate / ECR / ECS / IAM)</span>
+              </div>
+              <div class="hud-telemetry-row">
+                <span class="hud-key">CI/CD:</span>
+                <span class="hud-val text-yellow">Jenkins Automated Pipelines</span>
+              </div>
+              <div class="hud-telemetry-row">
+                <span class="hud-key">SECURITY:</span>
+                <span class="hud-val text-purple">Least-Privilege IAM & Sysctl Hardening</span>
+              </div>
+              <div class="hud-telemetry-row">
+                <span class="hud-key">CERTIFICATION:</span>
+                <span class="hud-val text-cyan">AWS Certified Cloud Practitioner (In Progress)</span>
+              </div>
+              <div class="hud-telemetry-row">
+                <span class="hud-key">LOCATION:</span>
+                <span class="hud-val">India (Open to Remote / Relocation)</span>
+              </div>
+
+              <div class="system-monitor-box">
+                <div class="monitor-header">
+                  <span>INFRASTRUCTURE HEALTH</span>
+                  <span class="text-emerald"><i class="fa-solid fa-circle-check"></i> 100% OPERATIONAL</span>
+                </div>
+                <div class="metrics-bar-group">
+                  <div class="metric-row">
+                    <span>Automation Rate</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 95%;"></div></div>
+                    <span>95%</span>
+                  </div>
+                  <div class="metric-row">
+                    <span>CIS Hardening</span>
+                    <div class="bar-track"><div class="bar-fill emerald-fill" style="width: 98%;"></div></div>
+                    <span>98%</span>
+                  </div>
+                  <div class="metric-row">
+                    <span>Container Efficiency</span>
+                    <div class="bar-track"><div class="bar-fill purple-fill" style="width: 92%;"></div></div>
+                    <span>92%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: Interactive CI/CD Pipeline Simulator -->
+    <section id="pipeline-section" class="section-padding bg-surface">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-code-branch"></i> CORE DEVOPS PROJECT</div>
+          <h2 class="section-title">Automated Serverless <span class="gradient-text">CI/CD Pipeline</span></h2>
+          <p class="section-subtitle">
+            Interactive visualization of an end-to-end automated pipeline connecting GitHub, Jenkins, Docker, AWS ECR, and AWS ECS Fargate with CloudWatch telemetry.
+          </p>
+        </div>
+
+        <!-- Interactive Pipeline Visualizer Box -->
+        <div class="pipeline-simulator-card">
+          <div class="pipeline-card-header">
+            <div class="pipeline-status-badge" id="pipeline-status-text">
+              <i class="fa-solid fa-circle-notch fa-spin"></i> READY FOR SIMULATION
+            </div>
+            <div class="pipeline-actions">
+              <button class="btn btn-sm btn-primary" id="btn-trigger-pipeline">
+                <i class="fa-solid fa-play"></i> Trigger Pipeline Build
+              </button>
+              <button class="btn btn-sm btn-glass" id="btn-reset-pipeline">
+                <i class="fa-solid fa-rotate-left"></i> Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Flow Chart Nodes -->
+          <div class="pipeline-nodes-wrapper">
+            <div class="pipeline-track-line" id="pipeline-track-line"></div>
+
+            <!-- Node 1: GitHub -->
+            <div class="pipe-node" data-step="1" id="pipe-node-1">
+              <div class="node-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="node-title">1. GitHub</div>
+              <div class="node-desc">Git Push (main)</div>
+              <div class="node-badge">Source</div>
+            </div>
+
+            <div class="pipe-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- Node 2: Jenkins -->
+            <div class="pipe-node" data-step="2" id="pipe-node-2">
+              <div class="node-icon"><i class="fa-brands fa-jenkins"></i></div>
+              <div class="node-title">2. Jenkins</div>
+              <div class="node-desc">Webhook & Linting</div>
+              <div class="node-badge">Build Server</div>
+            </div>
+
+            <div class="pipe-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- Node 3: Docker -->
+            <div class="pipe-node" data-step="3" id="pipe-node-3">
+              <div class="node-icon"><i class="fa-brands fa-docker"></i></div>
+              <div class="node-title">3. Docker</div>
+              <div class="node-desc">Multi-Stage Build</div>
+              <div class="node-badge">Container</div>
+            </div>
+
+            <div class="pipe-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- Node 4: AWS ECR -->
+            <div class="pipe-node" data-step="4" id="pipe-node-4">
+              <div class="node-icon"><i class="fa-solid fa-box-archive"></i></div>
+              <div class="node-title">4. AWS ECR</div>
+              <div class="node-desc">Versioned Image</div>
+              <div class="node-badge">Registry</div>
+            </div>
+
+            <div class="pipe-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- Node 5: AWS ECS Fargate -->
+            <div class="pipe-node" data-step="5" id="pipe-node-5">
+              <div class="node-icon"><i class="fa-brands fa-aws"></i></div>
+              <div class="node-title">5. ECS Fargate</div>
+              <div class="node-desc">Serverless Deploy</div>
+              <div class="node-badge">Runtime</div>
+            </div>
+
+            <div class="pipe-connector"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- Node 6: CloudWatch -->
+            <div class="pipe-node" data-step="6" id="pipe-node-6">
+              <div class="node-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <div class="node-title">6. CloudWatch</div>
+              <div class="node-desc">Live Telemetry</div>
+              <div class="node-badge">Observability</div>
+            </div>
+          </div>
+
+          <!-- Real-Time Console Stream Output -->
+          <div class="pipeline-console">
+            <div class="console-header">
+              <span><i class="fa-solid fa-terminal"></i> Pipeline Execution Logs (Live Stream)</span>
+              <span id="pipeline-timer">Duration: 0.0s</span>
+            </div>
+            <div class="console-body" id="pipeline-logs">
+              <div class="log-line text-muted">[INFO] Pipeline engine initialized. Click "Trigger Pipeline Build" to observe real-time automation.</div>
+            </div>
+          </div>
+
+          <!-- Key Project Engineering Highlights -->
+          <div class="project-deepdive-grid">
+            <div class="deepdive-card">
+              <div class="deepdive-icon"><i class="fa-solid fa-bolt text-cyan"></i></div>
+              <h4>Serverless Deployment</h4>
+              <p>Eliminated underlying EC2 maintenance overhead by leveraging AWS ECS Fargate for automated scaling and zero-downtime rolling updates.</p>
+            </div>
+            <div class="deepdive-card">
+              <div class="deepdive-icon"><i class="fa-solid fa-lock text-emerald"></i></div>
+              <h4>Least-Privilege Security</h4>
+              <p>Configured fine-grained IAM task execution roles and secure AWS ECR repository policies with encrypted image storage.</p>
+            </div>
+            <div class="deepdive-card">
+              <div class="deepdive-icon"><i class="fa-solid fa-gauge-high text-purple"></i></div>
+              <h4>Continuous Observability</h4>
+              <p>Streamed real-time container metrics, application error tracking, and deployment status alerts via Amazon CloudWatch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Interactive AWS Cloud Infrastructure & IAM Topology Map -->
+    <section id="iam-section" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-network-wired"></i> CLOUD SECURITY ARCHITECTURE</div>
+          <h2 class="section-title">AWS Cloud Infra & <span class="gradient-text">IAM Policy Inspector</span></h2>
+          <p class="section-subtitle">
+            Visual breakdown of provisioned EC2 instances, VPC security boundaries, and least-privilege IAM policy simulations.
+          </p>
+        </div>
+
+        <div class="iam-inspector-grid">
+          <!-- Left: Interactive Topology Diagram -->
+          <div class="topology-viewer-card">
+            <div class="card-top-bar">
+              <span class="card-label"><i class="fa-solid fa-cubes"></i> AWS VPC ARCHITECTURE TOPOLOGY</span>
+              <span class="vpc-tag">vpc-08f3a9e2 (10.0.0.0/16)</span>
+            </div>
+
+            <div class="topology-canvas-wrap">
+              <div class="cloud-boundary">
+                <div class="boundary-tag"><i class="fa-brands fa-aws"></i> AWS Cloud (Region: us-east-1)</div>
+
+                <!-- VPC Box -->
+                <div class="vpc-box">
+                  <div class="subnet-box public-subnet">
+                    <div class="subnet-header"><i class="fa-solid fa-globe"></i> Public Subnet (10.0.1.0/24)</div>
+                    <div class="service-node" id="node-igw">
+                      <i class="fa-solid fa-shield-halved"></i>
+                      <span>Security Group: Ingress (80, 443, 22-restricted)</span>
+                    </div>
+                  </div>
+
+                  <div class="subnet-box private-subnet">
+                    <div class="subnet-header"><i class="fa-solid fa-lock"></i> Compute & Workload Subnet</div>
+                    <div class="instances-row">
+                      <div class="service-node active-service" id="target-ec2">
+                        <i class="fa-solid fa-server"></i>
+                        <span>Hardened EC2 (Amazon Linux 2023)</span>
+                        <div class="access-pill" id="badge-ec2"><i class="fa-solid fa-check"></i> ALLOWED</div>
+                      </div>
+                      <div class="service-node active-service" id="target-s3">
+                        <i class="fa-solid fa-database"></i>
+                        <span>S3 State Bucket (Encrypted)</span>
+                        <div class="access-pill" id="badge-s3"><i class="fa-solid fa-check"></i> ALLOWED</div>
+                      </div>
+                      <div class="service-node active-service" id="target-ecs">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <span>ECS & ECR Repositories</span>
+                        <div class="access-pill" id="badge-ecs"><i class="fa-solid fa-check"></i> ALLOWED</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Role Selector Controls -->
+            <div class="role-selector-bar">
+              <span class="role-label">Test Active IAM Role:</span>
+              <div class="role-buttons">
+                <button class="role-btn active" data-role="devops-lead">
+                  <i class="fa-solid fa-user-gear"></i> DevOps Engineer Role
+                </button>
+                <button class="role-btn" data-role="security-auditor">
+                  <i class="fa-solid fa-user-shield"></i> Security Auditor (Read-Only)
+                </button>
+                <button class="role-btn" data-role="unauthorized-guest">
+                  <i class="fa-solid fa-user-xmark"></i> Unprivileged User
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Real-time IAM Policy JSON & Security Rules -->
+          <div class="policy-display-card">
+            <div class="policy-card-header">
+              <span><i class="fa-solid fa-file-code"></i> Live IAM Policy Evaluator (JSON)</span>
+              <button class="copy-policy-btn" id="btn-copy-policy" title="Copy JSON">
+                <i class="fa-regular fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre class="policy-json-view"><code id="policy-code-output">
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DevOpsLeastPrivilegeAccess",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:Describe*",
+        "ec2:StartInstances",
+        "ec2:StopInstances",
+        "ecs:UpdateService",
+        "ecr:GetAuthorizationToken",
+        "ecr:BatchCheckLayerAvailability",
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+            </code></pre>
+            <div class="policy-audit-info">
+              <div class="audit-badge pass"><i class="fa-solid fa-shield-check"></i> Zero Root Key Exposure</div>
+              <div class="audit-badge pass"><i class="fa-solid fa-key"></i> Role-Based STS Temporary Credentials</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Linux Server Hardening Interactive Terminal & CIS Benchmark -->
+    <section id="linux-section" class="section-padding bg-surface">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-shield-virus"></i> SECURITY & LINUX ADMINISTRATION</div>
+          <h2 class="section-title">Linux Server Hardening <span class="gradient-text">Interactive Lab</span></h2>
+          <p class="section-subtitle">
+            Automated shell auditing scripts, disabled attack vectors, kernel parameter tuning, and tight permission enforcement.
+          </p>
+        </div>
+
+        <div class="terminal-lab-grid">
+          <!-- Left: Interactive Web Terminal -->
+          <div class="interactive-terminal-card">
+            <div class="term-window-top">
+              <div class="term-window-controls">
+                <span class="ctrl-dot dot-close"></span>
+                <span class="ctrl-dot dot-min"></span>
+                <span class="ctrl-dot dot-max"></span>
+              </div>
+              <div class="term-window-title"><i class="fa-solid fa-terminal"></i> bash - abhay@hardened-server: ~</div>
+              <div class="term-window-actions">
+                <span class="terminal-env-tag">BASH 5.2</span>
+              </div>
+            </div>
+
+            <div class="term-window-screen" id="term-screen">
+              <div class="term-line output-text text-muted">Linux hardened-server 6.1.0-aws #1 SMP PREEMPT_DYNAMIC x86_64</div>
+              <div class="term-line output-text text-cyan">Welcome to Abhay Rana's Hardened Security Node Simulator.</div>
+              <div class="term-line output-text text-muted">Type <span class="text-yellow font-bold">'help'</span> or <span class="text-yellow font-bold">'audit'</span> to run automated security audits.</div>
+              <div class="term-spacer"></div>
+            </div>
+
+            <!-- Terminal Command Prompt Input -->
+            <div class="term-prompt-row">
+              <span class="term-prompt-user">abhay@hardened-node</span><span class="text-muted">:</span><span class="term-prompt-path">~</span><span class="term-prompt-symbol">$</span>
+              <input type="text" id="term-input" class="term-input" placeholder="Type a command (e.g. audit, check-ssh, ufw, help)..." autocomplete="off" spellcheck="false">
+              <button class="btn-term-send" id="term-send-btn" title="Execute command"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Quick Command Shortcut Chips -->
+            <div class="quick-commands-bar">
+              <span class="quick-title">Quick commands:</span>
+              <button class="quick-cmd-chip" data-cmd="audit">hardening-audit</button>
+              <button class="quick-cmd-chip" data-cmd="check-ssh">check-ssh</button>
+              <button class="quick-cmd-chip" data-cmd="ufw">ufw status</button>
+              <button class="quick-cmd-chip" data-cmd="cat /etc/security/audit.sh">cat audit.sh</button>
+              <button class="quick-cmd-chip" data-cmd="skills">skills</button>
+              <button class="quick-cmd-chip" data-cmd="clear">clear</button>
+            </div>
+          </div>
+
+          <!-- Right: Hardening Metrics & CIS Benchmark Scorecards -->
+          <div class="hardening-metrics-sidebar">
+            <div class="score-circle-card">
+              <div class="gauge-wrap">
+                <svg class="gauge-svg" viewBox="0 0 120 120">
+                  <circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
+                  <circle class="gauge-progress" cx="60" cy="60" r="50"></circle>
+                </svg>
+                <div class="gauge-inner">
+                  <span class="score-number">98</span>
+                  <span class="score-max">/ 100</span>
+                </div>
+              </div>
+              <div class="gauge-label">
+                <h3>CIS Hardening Score</h3>
+                <p>Automated Shell Auditing Passed</p>
+              </div>
+            </div>
+
+            <!-- Hardening Vectors Checklist -->
+            <div class="security-vectors-card">
+              <h4 class="vectors-title"><i class="fa-solid fa-list-check"></i> Hardened Security Controls</h4>
+              <ul class="vectors-list">
+                <li class="vector-item pass">
+                  <i class="fa-solid fa-shield-check"></i>
+                  <div class="vector-text">
+                    <strong>Root SSH Disabled</strong>
+                    <span><code>PermitRootLogin no</code> & Key-based auth only</span>
+                  </div>
+                </li>
+                <li class="vector-item pass">
+                  <i class="fa-solid fa-shield-check"></i>
+                  <div class="vector-text">
+                    <strong>Strict File Permissions</strong>
+                    <span><code>chmod 600 /etc/shadow</code> & <code>644 /etc/passwd</code></span>
+                  </div>
+                </li>
+                <li class="vector-item pass">
+                  <i class="fa-solid fa-shield-check"></i>
+                  <div class="vector-text">
+                    <strong>Firewall & Rate Limiting</strong>
+                    <span>UFW enabled with iptables DDoS brute-force limits</span>
+                  </div>
+                </li>
+                <li class="vector-item pass">
+                  <i class="fa-solid fa-shield-check"></i>
+                  <div class="vector-text">
+                    <strong>Automated Audit Scripts</strong>
+                    <span>Bash scripts scanning open ports and unnecessary services</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Containerized Full-Stack Web App (Tic-Tac-Toe with Bot & Microservices) -->
+    <section id="game-section" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-brands fa-docker"></i> FULL-STACK DOCKERIZED APPLICATION</div>
+          <h2 class="section-title">Tic-Tac-Toe with <span class="gradient-text">Bot Mode & Docker</span></h2>
+          <p class="section-subtitle">
+            Containerized full-stack application with Nginx reverse proxy, Python/Flask backend, MySQL persistence, and an intelligent Bot opponent.
+          </p>
+        </div>
+
+        <div class="docker-app-grid">
+          <!-- Architecture Flow Card -->
+          <div class="container-arch-card">
+            <h3 class="arch-title"><i class="fa-solid fa-network-wired"></i> Container Microservices Architecture</h3>
+            <div class="microservices-flow">
+              <!-- Tier 1: Nginx Proxy -->
+              <div class="arch-box">
+                <div class="arch-box-icon"><i class="fa-solid fa-globe text-cyan"></i></div>
+                <div class="arch-box-content">
+                  <div class="arch-box-name">Nginx Reverse Proxy</div>
+                  <div class="arch-box-sub">Port: 80 / 443 -> SSL Termination & Static Assets</div>
+                </div>
+                <span class="docker-tag">Container 1</span>
+              </div>
+
+              <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> REST API Requests (/api/move)</div>
+
+              <!-- Tier 2: Python / Flask -->
+              <div class="arch-box">
+                <div class="arch-box-icon"><i class="fa-brands fa-python text-yellow"></i></div>
+                <div class="arch-box-content">
+                  <div class="arch-box-name">Python Flask Backend</div>
+                  <div class="arch-box-sub">Port: 5000 -> Game State Engine & Bot AI Logic</div>
+                </div>
+                <span class="docker-tag">Container 2</span>
+              </div>
+
+              <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> SQL Queries / State Sync</div>
+
+              <!-- Tier 3: MySQL DB -->
+              <div class="arch-box">
+                <div class="arch-box-icon"><i class="fa-solid fa-database text-emerald"></i></div>
+                <div class="arch-box-content">
+                  <div class="arch-box-name">MySQL Database</div>
+                  <div class="arch-box-sub">Port: 3306 -> Persistent Match History & Leaderboard</div>
+                </div>
+                <span class="docker-tag">Container 3</span>
+              </div>
+            </div>
+
+            <div class="docker-compose-snippet">
+              <div class="snippet-header">
+                <span><i class="fa-brands fa-docker"></i> docker-compose.yml preview</span>
+              </div>
+              <pre class="snippet-code"><code>services:
+  nginx:
+    image: nginx:alpine
+    ports: ["80:80"]
+    depends_on: [flask-backend]
+  flask-backend:
+    build: ./backend
+    environment: [DB_HOST=mysql-db]
+  mysql-db:
+    image: mysql:8.0
+    volumes: [db_data:/var/lib/mysql]</code></pre>
+            </div>
+          </div>
+
+          <!-- Playable Live Interactive Game -->
+          <div class="playable-game-card">
+            <div class="game-top-bar">
+              <div class="game-title"><i class="fa-solid fa-gamepad"></i> Interactive Bot Mode Demo</div>
+              <div class="game-difficulty-badge">AI Bot: ACTIVE</div>
+            </div>
+
+            <!-- Scoreboard -->
+            <div class="game-scoreboard">
+              <div class="score-box user-score">
+                <span class="score-title">YOU (X)</span>
+                <span class="score-digits" id="player-score">0</span>
+              </div>
+              <div class="score-box ties-score">
+                <span class="score-title">TIES</span>
+                <span class="score-digits" id="ties-score">0</span>
+              </div>
+              <div class="score-box bot-score">
+                <span class="score-title">BOT (O)</span>
+                <span class="score-digits" id="bot-score">0</span>
+              </div>
+            </div>
+
+            <!-- Turn Status -->
+            <div class="game-status-banner" id="game-status-text">Your turn! Click any grid tile to move.</div>
+
+            <!-- 3x3 Board -->
+            <div class="tic-tac-toe-board" id="ttt-board">
+              <button class="ttt-cell" data-index="0" aria-label="Cell 1"></button>
+              <button class="ttt-cell" data-index="1" aria-label="Cell 2"></button>
+              <button class="ttt-cell" data-index="2" aria-label="Cell 3"></button>
+              <button class="ttt-cell" data-index="3" aria-label="Cell 4"></button>
+              <button class="ttt-cell" data-index="4" aria-label="Cell 5"></button>
+              <button class="ttt-cell" data-index="5" aria-label="Cell 6"></button>
+              <button class="ttt-cell" data-index="6" aria-label="Cell 7"></button>
+              <button class="ttt-cell" data-index="7" aria-label="Cell 8"></button>
+              <button class="ttt-cell" data-index="8" aria-label="Cell 9"></button>
+            </div>
+
+            <div class="game-controls">
+              <button class="btn btn-sm btn-primary" id="btn-reset-game">
+                <i class="fa-solid fa-rotate-left"></i> Restart Match
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Technical Skills Matrix & Categorized Stacks -->
+    <section id="skills-section" class="section-padding bg-surface">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-code"></i> TECHNICAL MASTERY</div>
+          <h2 class="section-title">Skills & <span class="gradient-text">Technology Matrix</span></h2>
+          <p class="section-subtitle">
+            Comprehensive skill competencies categorized across Cloud, Security, Systems, Programming, and Computer Science.
+          </p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="skills-filter-nav">
+          <button class="skill-filter-btn active" data-filter="all">All Disciplines</button>
+          <button class="skill-filter-btn" data-filter="cloud">Cloud & DevOps</button>
+          <button class="skill-filter-btn" data-filter="security">Security & Hardening</button>
+          <button class="skill-filter-btn" data-filter="systems">Systems & Networking</button>
+          <button class="skill-filter-btn" data-filter="programming">Programming & Web</button>
+          <button class="skill-filter-btn" data-filter="cs">Core CS</button>
+        </div>
+
+        <!-- Grid of Skill Cards -->
+        <div class="skills-grid" id="skills-grid">
+          <!-- Cloud & DevOps Cards -->
+          <div class="skill-card" data-category="cloud">
+            <div class="skill-icon-header">
+              <i class="fa-brands fa-aws text-orange"></i>
+              <span class="skill-level-badge">Advanced</span>
+            </div>
+            <h3 class="skill-name">AWS Cloud Services</h3>
+            <p class="skill-desc">ECS, ECR, Fargate, EC2, IAM, S3, CloudWatch & AWS CLI automation.</p>
+            <div class="skill-tags">
+              <span>EC2</span><span>ECS Fargate</span><span>ECR</span><span>IAM</span><span>S3</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="cloud">
+            <div class="skill-icon-header">
+              <i class="fa-brands fa-docker text-cyan"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">Docker & Containers</h3>
+            <p class="skill-desc">Containerization, multi-stage Dockerfiles, Docker Compose microservices orchestration.</p>
+            <div class="skill-tags">
+              <span>Docker</span><span>Compose</span><span>Multi-Stage</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="cloud">
+            <div class="skill-icon-header">
+              <i class="fa-brands fa-jenkins text-yellow"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">Jenkins & CI/CD Pipelines</h3>
+            <p class="skill-desc">Automated build/test/deploy pipelines, webhook triggers, artifact management.</p>
+            <div class="skill-tags">
+              <span>Jenkins</span><span>CI/CD</span><span>Webhooks</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="cloud">
+            <div class="skill-icon-header">
+              <i class="fa-brands fa-git-alt text-red"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">Git & GitHub</h3>
+            <p class="skill-desc">Version control, branching strategies, automated actions, pull request workflows.</p>
+            <div class="skill-tags">
+              <span>Git</span><span>GitHub</span><span>Branching</span>
+            </div>
+          </div>
+
+          <!-- Security Cards -->
+          <div class="skill-card" data-category="security">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-user-shield text-purple"></i>
+              <span class="skill-level-badge">Core Focus</span>
+            </div>
+            <h3 class="skill-name">IAM & Access Control</h3>
+            <p class="skill-desc">Least-privilege policies, temporary STS credentials, role-based boundary enforcement.</p>
+            <div class="skill-tags">
+              <span>IAM Policies</span><span>Roles</span><span>Least-Privilege</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="security">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-server text-emerald"></i>
+              <span class="skill-level-badge">Core Focus</span>
+            </div>
+            <h3 class="skill-name">Linux Server Hardening</h3>
+            <p class="skill-desc">CIS benchmark auditing, disabling unused services, SSH key enforcement, UFW firewalls.</p>
+            <div class="skill-tags">
+              <span>CIS Benchmarks</span><span>SSH Security</span><span>UFW</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="security">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-shield-virus text-cyan"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">DevSecOps & Vulnerability Awareness</h3>
+            <p class="skill-desc">Embedding security checks across build lifecycle, container image vulnerability scanning.</p>
+            <div class="skill-tags">
+              <span>DevSecOps</span><span>Vulnerability Scans</span><span>Security Audits</span>
+            </div>
+          </div>
+
+          <!-- Systems & Networking -->
+          <div class="skill-card" data-category="systems">
+            <div class="skill-icon-header">
+              <i class="fa-brands fa-linux text-yellow"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">Linux Administration</h3>
+            <p class="skill-desc">Systemd services, bash scripting, user management, package managers, logs inspection.</p>
+            <div class="skill-tags">
+              <span>Ubuntu</span><span>RHEL/Amazon Linux</span><span>Bash</span><span>Systemd</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="systems">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-network-wired text-cyan"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">Networking & Protocols</h3>
+            <p class="skill-desc">TCP/IP, DNS, Subnetting, Reverse Proxying (Nginx), SSH, SSL/TLS certificates.</p>
+            <div class="skill-tags">
+              <span>TCP/IP</span><span>Nginx</span><span>SSH</span><span>DNS</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="systems">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-database text-emerald"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">MySQL & Databases</h3>
+            <p class="skill-desc">Relational schema design, queries, persistence inside containerized environments.</p>
+            <div class="skill-tags">
+              <span>MySQL</span><span>SQL</span><span>State Persistence</span>
+            </div>
+          </div>
+
+          <!-- Programming & Web -->
+          <div class="skill-card" data-category="programming">
+            <div class="skill-icon-header">
+              <i class="fa-brands fa-python text-yellow"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">Python & Flask</h3>
+            <p class="skill-desc">REST API development, automation scripting, integration testing and microservices.</p>
+            <div class="skill-tags">
+              <span>Python</span><span>Flask</span><span>REST APIs</span><span>Automation</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="programming">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-code text-purple"></i>
+              <span class="skill-level-badge">Foundational</span>
+            </div>
+            <h3 class="skill-name">C++ & Java</h3>
+            <p class="skill-desc">Object-oriented programming, data structures, algorithms, problem solving.</p>
+            <div class="skill-tags">
+              <span>C++</span><span>Java</span><span>OOP</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="programming">
+            <div class="skill-icon-header">
+              <i class="fa-brands fa-html5 text-orange"></i>
+              <span class="skill-level-badge">Proficient</span>
+            </div>
+            <h3 class="skill-name">HTML, CSS & JavaScript</h3>
+            <p class="skill-desc">Modern web layouts, responsive interfaces, DOM manipulation, asynchronous API clients.</p>
+            <div class="skill-tags">
+              <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+            </div>
+          </div>
+
+          <!-- Core CS -->
+          <div class="skill-card" data-category="cs">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-brain text-cyan"></i>
+              <span class="skill-level-badge">Core Foundation</span>
+            </div>
+            <h3 class="skill-name">Data Structures & Algorithms</h3>
+            <p class="skill-desc">Arrays, Trees, Graphs, Sorting algorithms, Hash maps, Big-O time and space complexity.</p>
+            <div class="skill-tags">
+              <span>DSA</span><span>Algorithms</span><span>Problem Solving</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="cs">
+            <div class="skill-icon-header">
+              <i class="fa-solid fa-microchip text-emerald"></i>
+              <span class="skill-level-badge">Core Foundation</span>
+            </div>
+            <h3 class="skill-name">Operating Systems & Architecture</h3>
+            <p class="skill-desc">Process scheduling, threads, memory management, file systems, CPU architecture.</p>
+            <div class="skill-tags">
+              <span>OS Concepts</span><span>Processes</span><span>Memory Mgmt</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Education & Certifications Timeline -->
+    <section id="education-section" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-graduation-cap"></i> BACKGROUND & CREDENTIALS</div>
+          <h2 class="section-title">Education & <span class="gradient-text">Certifications</span></h2>
+          <p class="section-subtitle">
+            Academic degree track, certifications in progress, and foundational education milestones.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Milestone 1: AWS Certification -->
+          <div class="timeline-card in-progress">
+            <div class="timeline-marker"><i class="fa-brands fa-aws"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <span class="timeline-role">AWS Certified Cloud Practitioner (CLF-C02)</span>
+                <span class="timeline-badge badge-active"><i class="fa-solid fa-clock"></i> In Progress</span>
+              </div>
+              <p class="timeline-desc">
+                Comprehensive preparation covering AWS Cloud Architecture principles, core cloud services, Security and Shared Responsibility Model, billing & governance.
+              </p>
+              <div class="milestone-progress-bar">
+                <div class="milestone-label">
+                  <span>Certification Readiness</span>
+                  <span>85%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milestone 2: Bachelor Degree -->
+          <div class="timeline-card">
+            <div class="timeline-marker"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <span class="timeline-role">Bachelor of Computer Applications (BCA)</span>
+                <span class="timeline-date">2024 — 2027</span>
+              </div>
+              <div class="timeline-institution">
+                <i class="fa-solid fa-building-columns"></i> Chandigarh Group of Colleges, Jhanjeri &nbsp;|&nbsp; <strong>CGPA: 7.3</strong>
+              </div>
+              <p class="timeline-desc">
+                Focus on Computer Science fundamentals, Cloud Computing, Database Management Systems (DBMS), Computer Networks, Linux, and Modern Software Engineering.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 3: 12th Senior Secondary -->
+          <div class="timeline-card">
+            <div class="timeline-marker"><i class="fa-solid fa-school"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <span class="timeline-role">Senior Secondary (12th Grade)</span>
+                <span class="timeline-date">2024</span>
+              </div>
+              <div class="timeline-institution">
+                <i class="fa-solid fa-landmark"></i> Government Senior Secondary School, Pahra &nbsp;|&nbsp; <strong>Score: 64%</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milestone 4: 10th Secondary -->
+          <div class="timeline-card">
+            <div class="timeline-marker"><i class="fa-solid fa-book-open"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <span class="timeline-role">Secondary School Education (10th Grade)</span>
+                <span class="timeline-date">2022</span>
+              </div>
+              <div class="timeline-institution">
+                <i class="fa-solid fa-landmark"></i> Shri Rama Public School, Kullu, H.P. &nbsp;|&nbsp; <strong>Score: 77.14%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: Interactive Contact Hub -->
+    <section id="contact-section" class="section-padding bg-surface">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-envelope"></i> GET IN TOUCH</div>
+          <h2 class="section-title">Let's Connect & <span class="gradient-text">Build Together</span></h2>
+          <p class="section-subtitle">
+            Open to DevOps internships, Cloud Engineering roles, open-source collaborations, and tech discussions.
+          </p>
+        </div>
+
+        <div class="contact-hub-grid">
+          <!-- Left: Direct Contact Information Cards -->
+          <div class="contact-methods">
+            <!-- Email -->
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-envelope text-cyan"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">Email Address</span>
+                <a href="mailto:Abhiryana0263@gmail.com" class="contact-value">Abhiryana0263@gmail.com</a>
+              </div>
+              <button class="copy-contact-btn" data-copy="Abhiryana0263@gmail.com" title="Copy email">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-phone text-emerald"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">Phone Number</span>
+                <a href="tel:+919015210665" class="contact-value">+91 9015210665</a>
+              </div>
+              <button class="copy-contact-btn" data-copy="+919015210665" title="Copy phone">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+
+            <!-- GitHub -->
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-brands fa-github text-purple"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">GitHub Repository Hub</span>
+                <a href="https://github.com/Abhay0263" target="_blank" rel="noopener noreferrer" class="contact-value">github.com/Abhay0263</a>
+              </div>
+              <a href="https://github.com/Abhay0263" target="_blank" rel="noopener noreferrer" class="contact-ext-link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-brands fa-linkedin text-cyan"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">LinkedIn Profile</span>
+                <span class="contact-value">Abhay Rana</span>
+              </div>
+              <a href="https://www.linkedin.com/in/abhay-rana-82559b325" target="_blank" rel="noopener noreferrer" class="contact-ext-link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Quick Message / CLI Snippet -->
+          <div class="contact-form-card">
+            <div class="form-header">
+              <h3><i class="fa-solid fa-paper-plane"></i> Quick Message</h3>
+              <span class="instant-tag">Direct to Email</span>
+            </div>
+
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <label for="contact-name">Your Name</label>
+                <input type="text" id="contact-name" name="name" placeholder="e.g. John Doe / Tech Recruiter" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Your Email</label>
+                <input type="email" id="contact-email" name="email" placeholder="e.g. john@company.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Message or Role Details</label>
+                <textarea id="contact-message" name="message" rows="4" placeholder="Hi Abhay, I checked your DevOps portfolio and would love to discuss..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="btn-submit-contact">
+                <i class="fa-solid fa-paper-plane"></i> Send Direct Message
+              </button>
+            </form>
+
+            <div class="cli-curl-snippet">
+              <div class="cli-header">
+                <span><i class="fa-solid fa-terminal"></i> Terminal Quick Connect:</span>
+              </div>
+              <div class="cli-box">
+                <code>curl -s https://raw.githubusercontent.com/Abhay0263/Abhay0263/main/contact.json</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="portfolio-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="brand-name">ABHAY RANA</span> — DevOps & Cloud Security Portfolio
+      </div>
+      <div class="footer-center">
+        <span>Crafted with pure HTML5, CSS3 & JavaScript for instant GitHub Pages deployment.</span>
+      </div>
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top" title="Back to Top"><i class="fa-solid fa-arrow-up"></i> Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
